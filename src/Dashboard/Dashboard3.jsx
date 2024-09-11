@@ -1,0 +1,95 @@
+// src/App.jsx
+import React from "react";
+import wk3 from "../assets/img/wk3.jpg";
+import bg3 from "../assets/img/bg3.jpg";
+import wk from "../assets/img/wk.jpg"; // Import gambar wk.jpg
+import fbIcon from "../assets/icons/facebook.png"; // Import ikon facebook
+import igIcon from "../assets/icons/instagram.png"; // Import ikon instagram
+
+function Dashboard3() {
+  return (
+    <div className="min-h-screen bg-[#FAF8EF]">
+      {/* Header Section */}
+      <div className="flex mb-24 pt-12 justify-center items-center">
+        <h1 className="text-4xl font-bold text-left  decoration-2 font-serif">
+          Tentang
+        </h1>
+        <hr className="border-t-2 border-black  ml-7 mt-2 w-[1070px]" />
+      </div>
+
+      {/* Main Content */}
+      <main className="flex items-center mb-28 justify-evenly">
+        {/* Left Image Section */}
+        <div className="w-[580px] h-[491px]">
+          <img
+            src={wk3}
+            alt="SMK Wikrama Bogor"
+            className="rounded-[10px] shadow-2xl w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Right Text Section */}
+        <div>
+          <div
+            className="flex justify-center items-center relative w-[489px] h-[287px] ml-8 p-6 rounded-[25px] shadow-lg bg-cover bg-center"
+            style={{ backgroundImage: `url(${bg3})` }}
+          >
+            <div className="absolute top-[-36px] left-[200px] w-[71px] h-[71px] bg-[#A9B782] rounded-full"></div>
+            <div className="absolute top-[-45px] left-[235px] w-[43px] h-[43px] bg-[#467049] rounded-full"></div>
+            <p className="text-justify font-serif ">
+              "Sebuah sekolah yang didirikan pada tanggal 8 Mei 1996, dibawah
+              naungan Yayasan Prawitama. Saat ini, SMK Wikrama Bogor memiliki 7
+              Kompetensi Keahlian yang tergabung dalam 4 Bidang, yaitu Teknologi
+              Informasi, Ekonomi Kreatif, Bisnis & Manajemen serta Pariwisata.
+              Dengan mengelola lebih dari 1800 peserta didik setiap tahunnya.
+              Berbagai prestasi telah diberikan kepada SMK Wikrama Bogor di
+              tingkat Nasional dan Internasional."
+            </p>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-[#A9B782] text-white h-[261px]">
+        <div className=" pt-8 pl-48 pb-6">
+          <div className="flex items-center pb-3">
+            <img src={wk} alt="Logo Wikrama" className="mr-4 w-[50px] " />
+            <h4 className="font-bold">SMK Wikrama Bogor</h4>
+          </div>
+          <hr className="border-t-1 border-white mt-2 w-[225px] " />
+        </div>
+
+        <div className="container mx-auto flex justify-evenly items-start font-serif">
+          {/* Left Section - Logo and Address */}
+          <div className="text-left items-start w-[250px]">
+            <h4 className="font-bold">Alamat</h4>
+            <p>Jl. Raya Wangun Kelurahan Sindangsari Bogor Timur 16720</p>
+          </div>
+
+          {/* Center Section - Telephone */}
+          <div className="text-left w-[250px]">
+            <p className="font-bold">Telepon</p>
+            <p>0251-8242411 / 082221718035 (Whatsapp)</p>
+          </div>
+
+          {/* Right Section - Social Media */}
+          <div className="text-left w-[250px] ">
+            <p className="font-bold mb-2 ">Sosial Media</p>
+            <div className=" space-x-6 justify-start">
+              <a href="#" className="flex pb-2">
+                <img src={fbIcon} alt="Facebook" className="h-[22px] mr-2 " />
+                <span>SMK Wikrama Bogor</span>
+              </a>
+            </div>
+            <a href="#" className="flex ">
+              <img src={igIcon} alt="Instagram" className="h-[24px] mr-2  " />
+              <span>@smkwikrama</span>
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default Dashboard3;
