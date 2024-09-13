@@ -26,7 +26,7 @@ function App() {
           </div>
 
           <button
-            className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded space-x-2"
+            className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded-[4px] space-x-2"
             style={{
               background:
                 "linear-gradient(to bottom, #456F47, #69895C, #A9B782)",
@@ -46,24 +46,24 @@ function App() {
         <div className="flex flex-col space-y-2  p-12 pt-10">
           <div className="text-left space-y-1">
             <div className="flex">
-              <p className="w-60">NIS</p>
-              <p className="font-semibold flex-1">: 12209077</p>
+              <p className="font-pt-serrif font-semibold w-60">NIS</p>
+              <p className="font-pt-serrif font-semibold flex-1">: 12209077</p>
             </div>
             <div className="flex">
-              <p className="w-60">Nama</p>
-              <p className="font-semibold flex-1">: Kenzi Badrika</p>
+              <p className="font-pt-serrif font-semibold w-60">Nama</p>
+              <p className="font-pt-serrif font-semibold flex-1">: Kenzi Badrika</p>
             </div>
             <div className="flex">
-              <p className="w-60">Rombel</p>
-              <p className="font-semibold flex-1">: PPLG XII-1</p>
+              <p className="font-pt-serrif font-semibold w-60">Rombel</p>
+              <p className="font-pt-serrif font-semibold flex-1">: PPLG XII-1</p>
             </div>
             <div className="flex">
-              <p className="w-60">Rayon</p>
-              <p className="font-semibold flex-1">: Cibedug 3</p>
+              <p className="font-pt-serrif font-semibold w-60">Rayon</p>
+              <p className="font-pt-serrif font-semibold flex-1">: Cibedug 3</p>
             </div>
             <div className="flex">
-              <p className="w-60">Pembimbing Rayon</p>
-              <p className="font-semibold flex-1">: Muslih, S.Kom</p>
+              <p className="font-pt-serrif font-semibold w-60">Pembimbing Rayon</p>
+              <p className="font-pt-serrif font-semibold flex-1">: Muslih, S.Kom</p>
             </div>
           </div>
         </div>
