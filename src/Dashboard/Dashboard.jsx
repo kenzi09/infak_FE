@@ -64,7 +64,7 @@ function Dashboard() {
               >
                 <img
                   src={gedungWk}
-                  className="rounded-full transition-all duration-[2000ms] ease-in-out"
+                  className="rounded-full"
                   style={{
                     width: '100%',
                     height: 'auto',
