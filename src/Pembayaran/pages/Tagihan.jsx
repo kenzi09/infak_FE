@@ -1,5 +1,7 @@
 import React from "react";
 import bg from "../../assets/img/bg.png";
+import StatusBlmBayar from "../../assets/Items/Status/StatusBlmBayar";
+import Menunggak from "../../assets/Items/Status/Menunggak";
 
 function Tagihan() {
   return (
@@ -13,12 +15,10 @@ function Tagihan() {
     >
       <div className="flex flex-col font-['PT_Serif'] ml-4">
         <div className="flex space-x-2 mb-1">
-          <span className="bg-[#F5D9A0] text-[#CE9C1C] font-bold italic py-1 px-2 mr-3 rounded-[4px] text-[8px]">
-            Belum Dibayar
-          </span>
-          <span className="bg-[#F5A0A0] text-[#D13F3F] font-bold italic py-1 px-2 rounded-[4px] text-[8px]">
-            Menunggak
-          </span>
+          <div className="mr-2">
+            <StatusBlmBayar/>
+          </div>
+            <Menunggak/>
         </div>
         <p className="font-bold text-black text-sm">
           Zakat Infaq dan Shadaqoh Bulan Juli 2024
