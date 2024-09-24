@@ -17,9 +17,9 @@ function TabelApp() {
     
     return(
         <div className="overflow-x-auto flex justify-center">
-            <table className="w-[93%] bg-white table-bordered">
+            <table className="w-[93%]  table-bordered">
               <thead className="bg-[#A9B782] border border-[#A9B782]">
-                <tr className="">
+                <tr>
                   <th className="py-2 px-4 text-left text-white">Bulan</th>
                   <th className="py-2 px-4 text-left text-white">
                     Tanggal Bayar
@@ -33,13 +33,9 @@ function TabelApp() {
               </thead>
               <tbody className="bg-[#FFFDF1]">
               {data.map((item, index) => (
-                    <tr key={index} className="border border-solid border-gray-300 rounded-xl">
-                        {/* <div className="mb-4"> */}
-                            <td className="mb-4 py-2 px-4">{item.bulan}</td>
-                        {/* </div> */}
-                        {/* <div> */}
-                            <td className=" py-2 px-4">{item.tanggalBayar}</td>
-                        {/* </div> */}
+                    <tr key={index} className=" border-b border-solid border-gray-300">
+                        <td className=" py-2 px-4">{item.bulan}</td>
+                        <td className=" py-2 px-4">{item.tanggalBayar}</td>
                         <td className=" py-2 px-4">{item.penerima}</td>
                         <td className=" py-2 px-4 ">
                         {item.paraf ? (

@@ -4,12 +4,21 @@ import { FiLogOut } from "react-icons/fi"; // Mengimpor icon logout
 import TabelApp from "./pages/TabelApp";
 import Tagihan from "./pages/Tagihan";
 import Riwayat from "./pages/Riwayat";
+import Popup from "../assets/Items/Popup";
 
 function App() {
   const [activeTab, setActiveTab] = useState("tabel"); // State untuk menyimpan tampilan aktif
+  const [showPopup, setShowPopup] = useState(false); // State untuk mengatur visibilitas popup
 
   const handleTabClick = (tab) => {
     setActiveTab(tab); // Mengubah tampilan aktif
+    if (tab === "riwayat") {
+      setShowPopup(true); // Tampilkan popup ketika tab riwayat diklik
+    }
+  };
+
+  const closePopup = () => {
+    setShowPopup(false); // Menutup popup
   };
 
   return (
@@ -96,16 +105,12 @@ function App() {
           ))}
         </div>
 
-        {activeTab === "tabel" && (
-          <TabelApp/>
-        )}
+        {activeTab === "tabel" && <TabelApp />}
 
-        {activeTab === "tagihan" && (
-          <Tagihan/>
-        )}
+        {activeTab === "tagihan" && <Tagihan />}
 
-        {activeTab === "riwayat" && (
-          <Riwayat/>
+        {activeTab === "riwayat" && showPopup && (
+          <Popup closePopup={closePopup} /> // Mengirim fungsi untuk menutup popup
         )}
       </div>
     </>

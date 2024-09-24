@@ -24,7 +24,7 @@ function Dashboard3() {
           <img
             src={wk3}
             alt="SMK Wikrama Bogor"
-            className="rounded-[10px] shadow-2xl w-full h-full object-cover"
+            className="rounded-[10px] shadow-2xl w-full h-full object-cover "
           />
         </div>
 
