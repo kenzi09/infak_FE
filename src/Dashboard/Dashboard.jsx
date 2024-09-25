@@ -20,11 +20,7 @@ function Dashboard() {
     <>
       <div className="min-h-screen bg-gray-100 flex flex-col bg-image font-pt">
         <Navbar />
-        <div
-          className={`welcome-section text-center pt-9 transition-transform duration-[2000ms] ease-in-out ${
-            isLoaded ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
-          }`}
-        >
+        <div className="welcome-section text-center pt-9">
           <h4 className="" style={{ fontSize: 28 }}>
             <span>Selamat datang, </span>
             <span className="font-bold text-gray-800">Nama Pengguna!</span>
@@ -33,11 +29,7 @@ function Dashboard() {
         </div>
         <main className="flex-grow flex flex-col items-center justify-center">
           <div className="justify-around flex w-full h-3/4 pb-7">
-            <div
-              className={`flex justify-center items-center transition-transform duration-[2000ms] ease-in-out ${
-                isLoaded ? "translate-x-0 opacity-100" : "-translate-x-20 opacity-0"
-              }`}
-            >
+            <div className="flex justify-center items-center">
               <div style={{ width: 450, height: 430 }}>
                 <div className="flex items-center justify-start pb-5">
                   <img src={wk} alt="Logo" className="logo-image w-12 h-12" />
@@ -48,16 +40,27 @@ function Dashboard() {
                 <p className="text-5xl font-bold text-black pb-5">
                   Website Bukti Pembayaran Zakat Infaq & Shadaqoh
                 </p>
-                <p className="text-xl text-black ">
+                <p className="text-xl text-black pb-3">
                   Pengelola Beasiswa SMK Wikrama Bogor
                 </p>
+                {/* Menambahkan Surah Al-Baqarah ayat 267 beserta artinya */}
+                <div className="text-sm text-gray-600 mt-4">
+                  <p className="font-bold text-2xl text-black">Surah Al-Baqarah Ayat 267</p>
+                  <p className="text-black text-right text-2xl font-arabic pb-4">
+                    يَا أَيُّهَا الَّذِينَ آمَنُوا أَنفِقُوا مِن طَيِّبَاتِ مَا كَسَبْتُمْ وَمِمَّآ
+                    أَخْرَجْنَا لَكُم مِّنَ ٱلْأَرْضِ وَلَا تَيَمَّمُوا ٱلْخَبِيثَ مِنْهُ تُنفِقُونَ وَلَسْتُم
+                    بِـَٔاخِذِيهِ إِلَّآ أَن تُغْمِضُوا فِيهِ وَٱعْلَمُوٓا أَنَّ ٱللَّهَ غَنِىٌّ حَمِيدٌ
+                  </p>
+                  <p>
+                    "Wahai orang-orang yang beriman! Infakkanlah (di jalan Allah) sebagian dari hasil usahamu
+                    yang baik-baik dan sebagian dari apa yang Kami keluarkan dari bumi untukmu. Dan janganlah kamu
+                    memilih yang buruk-buruk lalu kamu infakkan, padahal kamu sendiri tidak mau mengambilnya melainkan
+                    dengan memicingkan mata terhadapnya. Dan ketahuilah bahwa Allah Mahakaya, Maha Terpuji."
+                  </p>
+                </div>
               </div>
             </div>
-            <div
-              className={`flex justify-center items-center relative transition-transform duration-[2000ms] ease-in-out ${
-                isLoaded ? "translate-x-0 opacity-100" : "translate-x-20 opacity-0"
-              }`}
-            >
+            <div className="flex justify-center items-center relative">
               <div className="absolute inset-0 bg-gradient-to-r from-[#A9B782B3] via-transparent to-transparent rounded-full"></div>
               <div
                 style={{
@@ -68,12 +71,10 @@ function Dashboard() {
               >
                 <img
                   src={gedungWk}
-                  className="rounded-full transition-all duration-[2000ms] ease-in-out"
+                  className="rounded-full"
                   style={{
                     width: 430,
                     height: 430,
-                    transform: isLoaded ? "translateX(0)" : "translateX(100px)",
-                    opacity: isLoaded ? 1 : 0,
                   }}
                 />
               </div>

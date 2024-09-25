@@ -81,7 +81,7 @@
             ref={cardRef}
             onClick={handleCardClick} // Menambahkan onClick untuk navigasi
             className={`relative bg-[#A9B782] w-[473px] h-[281px] rounded-lg shadow-lg flex flex-col justify-center items-center p-4 my-2 transition-transform duration-[1000ms] ease-in-out transform ${isCardVisible ? 'translate-x-0' : '-translate-x-20'} hover:scale-105`}
-            style={{ borderRadius: "20px", margin: "60px" }}
+            style={{ borderRadius: "20px", margin: "60px", cursor: "pointer" }}
           >
             {/* Bagian bawah dengan background image */}
             <div
