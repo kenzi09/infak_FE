@@ -109,7 +109,8 @@ function App() {
 
         {activeTab === "tagihan" && <Tagihan />}
 
-        {activeTab === "riwayat" && showPopup && (
+        {activeTab === "riwayat" && 
+        showPopup && (
           <Popup closePopup={closePopup} /> // Mengirim fungsi untuk menutup popup
         )}
       </div>
