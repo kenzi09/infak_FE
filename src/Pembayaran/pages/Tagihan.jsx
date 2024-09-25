@@ -8,7 +8,7 @@ function Tagihan() {
     <div
       className="p-2 rounded-[5px] flex justify-between h-[120px] items-center shadow-xl ml-12 mr-12"
       style={{
-        backgroundImage: `url(${bg})`,
+        backgroundImage: `url(${bg})`, // Use backticks for template literals
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -16,9 +16,9 @@ function Tagihan() {
       <div className="flex flex-col font-['PT_Serif'] ml-4">
         <div className="flex space-x-2 mb-1">
           <div className="mr-2">
-            <StatusBlmBayar/>
+            <StatusBlmBayar />
           </div>
-            <Menunggak/>
+          <Menunggak />
         </div>
         <p className="font-bold text-black text-sm">
           Zakat Infaq dan Shadaqoh Bulan Juli 2024
@@ -43,4 +43,4 @@ function Tagihan() {
   );
 }
 
-export default Tagihan;
+export default Tagihan; 
