@@ -37,13 +37,7 @@ function Dashboard3() {
             <div className="absolute top-[-36px] left-[200px] w-[71px] h-[71px] bg-[#A9B782] rounded-full"></div>
             <div className="absolute top-[-45px] left-[235px] w-[43px] h-[43px] bg-[#467049] rounded-full"></div>
             <p className="text-justify font-serif ">
-              "Sebuah sekolah yang didirikan pada tanggal 8 Mei 1996, dibawah
-              naungan Yayasan Prawitama. Saat ini, SMK Wikrama Bogor memiliki 7
-              Kompetensi Keahlian yang tergabung dalam 4 Bidang, yaitu Teknologi
-              Informasi, Ekonomi Kreatif, Bisnis & Manajemen serta Pariwisata.
-              Dengan mengelola lebih dari 1800 peserta didik setiap tahunnya.
-              Berbagai prestasi telah diberikan kepada SMK Wikrama Bogor di
-              tingkat Nasional dan Internasional."
+            Berinfaq dan bershodaqoh adalah wujud nyata dari rasa syukur atas nikmat yang Allah berikan kepada kita. Ketika kita memberikan sebagian harta melalui infaq dan shodaqoh, sejatinya harta tersebut tidak berkurang, melainkan disimpan sebagai pahala yang abadi di sisi Allah. Melalui perbuatan ini, kita tidak hanya membantu sesama, tetapi juga membersihkan diri dari sifat kikir dan mendekatkan diri kepada-Nya. Infaq membuka jalan keberkahan harta, sementara shodaqoh menjadi sumber keberkahan hidup. Bukan soal seberapa besar yang kita berikan, namun ketulusan hati dalam memberi yang menjadi inti dari kebaikan ini.
             </p>
           </div>
         </div>
