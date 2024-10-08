@@ -44,19 +44,19 @@ function Login() {
       <div className="flex flex-col lg:flex-row w-full h-full relative">
         {/* Bagian Gambar Samping */}
         <div className="hidden lg:block lg:w-[475px] h-full relative">
-          <img
-            src={masjid}
-            alt="Gambar Samping"
-            className="w-full h-[100vh] object-cover rounded-none lg:rounded-tl-none lg:rounded-tr-[45px] lg:rounded-br-[45px] lg:rounded-bl-none"
-          />
-          <div
-            className="absolute top-0 right-0 bottom-0 lg:w-[200px] rounded-none lg:rounded-tl-none lg:rounded-tr-[45px] lg:rounded-br-[45px] lg:rounded-bl-none"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(0, 0, 0, 0), #AFAFAF)",
-            }}
-          ></div>
-        </div>
+  <img
+    src={masjid}
+    alt="Gambar Samping"
+    className="w-full h-[100vh] object-cover object-[29%] rounded-none lg:rounded-tl-none lg:rounded-tr-[45px] lg:rounded-br-[45px] lg:rounded-bl-none"
+  />
+  <div
+    className="absolute top-0 right-0 bottom-0 lg:w-[200px] rounded-none lg:rounded-tl-none lg:rounded-tr-[45px] lg:rounded-br-[45px] lg:rounded-bl-none"
+    style={{
+      background: "linear-gradient(to right, rgba(0, 0, 0, 0), #AFAFAF)",
+    }}
+  ></div>
+</div>
+
 
         {/* Bagian Form (Responsive) */}
         <div

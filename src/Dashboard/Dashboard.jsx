@@ -39,18 +39,18 @@ function Dashboard() {
                     SMK WIKRAMA BOGOR
                   </h5>
                 </div>
-                <p className="text-5xl font-bold text-black pb-5">
+                <p className="text-5xl font-bold text-black pb-7">
                   Website Bukti Pembayaran Zakat Infaq & Shadaqoh
                 </p>
-                <p className="text-xl text-black pb-3">
+                <p className="text-xl text-black pb-2">
                   Pengelola Beasiswa SMK Wikrama Bogor
                 </p>
                 {/* Garis panjang di atas */}
-                <hr className="border border-black mb-3 w-[600px] mt-5" />
+                <hr className="border border-black mb-7 w-[600px] mt-4" />
 
                 {/* Menambahkan div untuk ayat Al-Quran beserta artinya */}
-                <div className="bg-black shadow-lg p-6 rounded-md mt-6 w-[600px] bg-opacity-10">
-                  <p className="text-black text-right text-2xl font-arabic pb-4">
+                <div className="bg-black shadow-lg p-6 rounded-md mt-6 w-[600px] bg-opacity-5">
+                  <p className="text-black text-center text-2xl font-arabic pb-4">
                     لَآ إِكْرَاهَ فِي ٱلدِّينِۖ قَد تَّبَيَّنَ ٱلرُّشْدُ مِنَ
                     ٱلْغَيِّۚ فَمَن يَكْفُرْ بِٱلطَّٰغُوتِ وَيُؤْمِنۢ بِٱللَّهِ
                     فَقَدِ ٱسْتَمْسَكَ بِٱلْعُرْوَةِ ٱلْوُثْقَىٰ لَا ٱنفِصَامَ
@@ -70,17 +70,17 @@ function Dashboard() {
             </div>
 
             <div className="flex justify-center items-center relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#A9B782B3] via-transparent to-transparent rounded-full"></div>
+              <div className="absolute inset-0 bg-gradient-to-r  via-transparent to-transparent rounded-full"></div>
               <div
                 style={{
                   width: 484,
                   height: 484,
                 }}
-                className="flex justify-center items-center rounded-full bg-[#A9B782] bg-opacity-50"
+                className="flex justify-center items-center rounded-full bg-[#AFAFAF] bg-opacity-20 "
               >
                 <img
                   src={masjid}
-                  className="rounded-full"
+                  className="rounded-full object-cover"
                   style={{
                     width: 430,
                     height: 430,
