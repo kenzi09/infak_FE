@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import pohoncoin from "../assets/img/pohoncoin.jpg";
+// import pohoncoin from "../assets/img/pohoncoin.jpg";
+import masjid from "../assets/img/masjid.jpg";
 import logoWikrama from "../assets/img/logoWikrama.png";
 
 function Login() {
@@ -44,14 +45,15 @@ function Login() {
         {/* Bagian Gambar Samping */}
         <div className="hidden lg:block lg:w-[475px] h-full relative">
           <img
-            src={pohoncoin}
+            src={masjid}
             alt="Gambar Samping"
             className="w-full h-[100vh] object-cover rounded-none lg:rounded-tl-none lg:rounded-tr-[45px] lg:rounded-br-[45px] lg:rounded-bl-none"
           />
           <div
             className="absolute top-0 right-0 bottom-0 lg:w-[200px] rounded-none lg:rounded-tl-none lg:rounded-tr-[45px] lg:rounded-br-[45px] lg:rounded-bl-none"
             style={{
-              background: "linear-gradient(to right, rgba(0, 0, 0, 0), #CCBF9D)",
+              background:
+                "linear-gradient(to right, rgba(0, 0, 0, 0), #AFAFAF)",
             }}
           ></div>
         </div>
@@ -59,7 +61,7 @@ function Login() {
         {/* Bagian Form (Responsive) */}
         <div
           className="lg:hidden absolute inset-0 bg-cover bg-center h-screen"
-          style={{ backgroundImage: `url(${pohoncoin})` }}
+          style={{ backgroundImage: `url(${masjid})` }}
         ></div>
 
         <div className="relative flex flex-col justify-center items-center lg:items-start w-full lg:max-w-7xl p-6 lg:p-16 h-screen">
@@ -105,7 +107,10 @@ function Login() {
                   <div className="text-red-500 text-sm mb-4">{error}</div>
                 )}
 
-                <form onSubmit={handleSubmit} className="lg:space-y-6 space-y-5">
+                <form
+                  onSubmit={handleSubmit}
+                  className="lg:space-y-6 space-y-5"
+                >
                   <div>
                     <label
                       htmlFor="email"
