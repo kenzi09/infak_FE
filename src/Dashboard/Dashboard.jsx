@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 import wk from "../assets/img/wk.jpg"; // Impor logo
 import Navbar from "../assets/Items/navbar";
-import gedungWk from "../assets/img/gedungWk.jpg";
+// import gedungWk from "../assets/img/gedungWk.jpg";
+import masjid from "../assets/img/masjid.jpg";
 import Dashboard2 from "./Dashboard2";
 import Dashboard3 from "./Dashboard3";
 
@@ -30,7 +31,8 @@ function Dashboard() {
         <main className="flex-grow flex flex-col items-center justify-center">
           <div className="justify-around flex w-full h-3/4 pb-7">
             <div className="flex justify-center items-center">
-              <div style={{ width: 450, height: 430 }}>
+              {/* Tambahkan margin-top negatif untuk mengangkat teks */}
+              <div style={{ width: 450, height: 430, marginTop: "-160px" }}>
                 <div className="flex items-center justify-start pb-5">
                   <img src={wk} alt="Logo" className="logo-image w-12 h-12" />
                   <h5 className="font-semibold text-xs font-poppins text-black ml-3">
@@ -43,23 +45,30 @@ function Dashboard() {
                 <p className="text-xl text-black pb-3">
                   Pengelola Beasiswa SMK Wikrama Bogor
                 </p>
-                {/* Menambahkan Surah Al-Baqarah ayat 267 beserta artinya */}
-                <div className="text-sm text-gray-600 mt-4">
-                  <p className="font-bold text-2xl text-black">Surah Al-Baqarah Ayat 267</p>
+                {/* Garis panjang di atas */}
+                <hr className="border border-black mb-3 w-[600px] mt-5" />
+
+                {/* Menambahkan div untuk ayat Al-Quran beserta artinya */}
+                <div className="bg-black shadow-lg p-6 rounded-md mt-6 w-[600px] bg-opacity-10">
                   <p className="text-black text-right text-2xl font-arabic pb-4">
-                    يَا أَيُّهَا الَّذِينَ آمَنُوا أَنفِقُوا مِن طَيِّبَاتِ مَا كَسَبْتُمْ وَمِمَّآ
-                    أَخْرَجْنَا لَكُم مِّنَ ٱلْأَرْضِ وَلَا تَيَمَّمُوا ٱلْخَبِيثَ مِنْهُ تُنفِقُونَ وَلَسْتُم
-                    بِـَٔاخِذِيهِ إِلَّآ أَن تُغْمِضُوا فِيهِ وَٱعْلَمُوٓا أَنَّ ٱللَّهَ غَنِىٌّ حَمِيدٌ
+                    لَآ إِكْرَاهَ فِي ٱلدِّينِۖ قَد تَّبَيَّنَ ٱلرُّشْدُ مِنَ
+                    ٱلْغَيِّۚ فَمَن يَكْفُرْ بِٱلطَّٰغُوتِ وَيُؤْمِنۢ بِٱللَّهِ
+                    فَقَدِ ٱسْتَمْسَكَ بِٱلْعُرْوَةِ ٱلْوُثْقَىٰ لَا ٱنفِصَامَ
+                    لَهَاۗ وَٱللَّهُ سَمِيعٌ عَلِيمٌ
                   </p>
-                  <p>
-                    "Wahai orang-orang yang beriman! Infakkanlah (di jalan Allah) sebagian dari hasil usahamu
-                    yang baik-baik dan sebagian dari apa yang Kami keluarkan dari bumi untukmu. Dan janganlah kamu
-                    memilih yang buruk-buruk lalu kamu infakkan, padahal kamu sendiri tidak mau mengambilnya melainkan
-                    dengan memicingkan mata terhadapnya. Dan ketahuilah bahwa Allah Mahakaya, Maha Terpuji."
+                  <p className="text-black text-center italic">
+                    "Tidak ada paksaan untuk (memasuki) agama (Islam);
+                    sesungguhnya telah jelas jalan yang benar daripada jalan
+                    yang sesat. Karena itu, barang siapa yang ingkar kepada
+                    thaghut dan beriman kepada Allah, maka sesungguhnya ia telah
+                    berpegang teguh pada tali yang sangat kuat yang tidak akan
+                    putus. Allah Maha Mendengar, Maha
+                    Mengetahui."(Q.s.Al-Baqarah:256)
                   </p>
                 </div>
               </div>
             </div>
+
             <div className="flex justify-center items-center relative">
               <div className="absolute inset-0 bg-gradient-to-r from-[#A9B782B3] via-transparent to-transparent rounded-full"></div>
               <div
@@ -70,7 +79,7 @@ function Dashboard() {
                 className="flex justify-center items-center rounded-full bg-[#A9B782] bg-opacity-50"
               >
                 <img
-                  src={gedungWk}
+                  src={masjid}
                   className="rounded-full"
                   style={{
                     width: 430,
