@@ -21,16 +21,16 @@ function Dashboard() {
       <div className="min-h-screen bg-gray-100 flex flex-col bg-image font-pt">
         <Navbar />
         <div className="welcome-section text-center pt-9">
-          <h4 className="" style={{ fontSize: 28 }}>
+          <p className="" style={{ fontSize: 25 }}>
             <span>Selamat datang, </span>
             <span className="font-bold text-gray-800">Nama Pengguna!</span>
-          </h4>
-          <p className="text-xl text-gray-500">Rayon | Rombel | NIS</p>
+          </p>
+          <p className="text-[18px] text-gray-500">Rayon | Rombel | NIS</p>
         </div>
         <main className="flex-grow flex flex-col items-center justify-center">
           <div className="justify-around flex w-full h-3/4 pb-7">
             <div className="flex justify-center items-center">
-              <div style={{ width: 450, height: 430, marginTop: "-160px" }}>
+              <div style={{ width: 450, height: 430, marginTop: "-100px" }}>
                 <div className="flex items-center justify-start pb-5">
                   <img src={wk} alt="Logo" className="logo-image w-12 h-12" />
                   <h5 className="font-semibold text-[12.77px] font-poppins text-black ml-3">
@@ -43,6 +43,27 @@ function Dashboard() {
                 <p className="text-xl text-black pb-2">
                   Pengelola Beasiswa SMK Wikrama Bogor
                 </p>
+<<<<<<< HEAD
+                {/* Garis panjang di atas */}
+                <hr className="border border-black mb-7 w-[488px] mt-4" />
+
+                {/* Menambahkan div untuk ayat Al-Quran beserta artinya */}
+                <div className="bg-black shadow-lg p-6 rounded-md mt-6 w-[488px] bg-opacity-5">
+                  <p className="text-black text-center text-[14px] font-arabic pb-4 italic">
+                    لَآ إِكْرَاهَ فِي ٱلدِّينِۖ قَد تَّبَيَّنَ ٱلرُّشْدُ مِنَ
+                    ٱلْغَيِّۚ فَمَن يَكْفُرْ بِٱلطَّٰغُوتِ وَيُؤْمِنۢ بِٱللَّهِ
+                    فَقَدِ ٱسْتَمْسَكَ بِٱلْعُرْوَةِ ٱلْوُثْقَىٰ لَا ٱنفِصَامَ
+                    لَهَاۗ وَٱللَّهُ سَمِيعٌ عَلِيمٌ
+                  </p>
+                  <p className="text-black text-center italic text-[13px]">
+                    "Tidak ada paksaan untuk (memasuki) agama (Islam);
+                    sesungguhnya telah jelas jalan yang benar daripada jalan
+                    yang sesat. Karena itu, barang siapa yang ingkar kepada
+                    thaghut dan beriman kepada Allah, maka sesungguhnya ia telah
+                    berpegang teguh pada tali yang sangat kuat yang tidak akan
+                    putus. Allah Maha Mendengar, Maha
+                    Mengetahui."(Q.s.Al-Baqarah:256)
+=======
 
                 <hr className="border border-black mb-7 w-[600px] mt-4" />
 
@@ -59,6 +80,7 @@ function Dashboard() {
                     bulir, di setiap bulir ada seratus biji. Allah melipatgandakan
                     (pahala) bagi siapa yang Dia kehendaki. Dan Allah Maha Luas,
                     Maha Mengetahui." (Q.S. Al-Baqarah: 265)
+>>>>>>> a65d7255df4a67c6e7a74c3885a88d8cb03666d5
                   </p>
                 </div>
               </div>

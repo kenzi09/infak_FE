@@ -36,8 +36,13 @@ function Dashboard3() {
             className="flex justify-center items-center relative w-[500px] h-auto ml-8 p-6 rounded-[25px] shadow-lg bg-cover bg-center"
             style={{ backgroundImage: `url(${bg3})` }}
           >
+<<<<<<< HEAD
+            <div className="absolute top-[-45px] left-[222px] w-[71px] h-[71px] bg-[#A9B782] rounded-full"></div>
+            <div className="absolute top-[-54px] left-[257px] w-[43px] h-[43px] bg-[#467049] rounded-full"></div>
+=======
             <div className="absolute top-[-36px] left-[200px] w-[71px] h-[71px] bg-[#A9B782] rounded-full"></div>
             <div className="absolute top-[-45px] left-[235px] w-[43px] h-[43px] bg-[#467049] rounded-full"></div>
+>>>>>>> a65d7255df4a67c6e7a74c3885a88d8cb03666d5
 
             <p className="text-justify font-serif p-3">
             Berinfaq dan bershodaqoh adalah wujud nyata dari rasa syukur atas nikmat yang Allah berikan kepada kita. Ketika kita memberikan sebagian harta melalui infaq dan shodaqoh, sejatinya harta tersebut tidak berkurang, melainkan disimpan sebagai pahala yang abadi di sisi Allah. Melalui perbuatan ini, kita tidak hanya membantu sesama, tetapi juga membersihkan diri dari sifat kikir dan mendekatkan diri kepada-Nya. Infaq membuka jalan keberkahan harta, sementara shodaqoh menjadi sumber keberkahan hidup. Bukan soal seberapa besar yang kita berikan, namun ketulusan hati dalam memberi yang menjadi inti dari kebaikan ini.
