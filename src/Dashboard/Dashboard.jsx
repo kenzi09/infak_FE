@@ -33,7 +33,7 @@ function Dashboard() {
               <div style={{ width: 450, height: 430, marginTop: "-160px" }}>
                 <div className="flex items-center justify-start pb-5">
                   <img src={wk} alt="Logo" className="logo-image w-12 h-12" />
-                  <h5 className="font-semibold text-xs font-poppins text-black ml-3">
+                  <h5 className="font-semibold text-[12.77px] font-poppins text-black ml-3">
                     SMK WIKRAMA BOGOR
                   </h5>
                 </div>
@@ -43,6 +43,7 @@ function Dashboard() {
                 <p className="text-xl text-black pb-2">
                   Pengelola Beasiswa SMK Wikrama Bogor
                 </p>
+
                 <hr className="border border-black mb-7 w-[600px] mt-4" />
 
                 <div className="bg-[#A9B782] bg-opacity-50 shadow-lg p-6 rounded-xl mt-6 w-[600px]">
@@ -67,8 +68,8 @@ function Dashboard() {
               <div className="absolute inset-0 bg-gradient-to-r via-transparent to-transparent rounded-full"></div>
               <div
                 style={{
-                  width: 484,
-                  height: 484,
+                  width: 561,
+                  height: 561,
                 }}
                 className="flex justify-center items-center rounded-full bg-[#AFAFAF] bg-opacity-20 "
               >
@@ -76,8 +77,8 @@ function Dashboard() {
                   src={masjid}
                   className="rounded-full object-cover"
                   style={{
-                    width: 430,
-                    height: 430,
+                    width: 497,
+                    height: 497,
                   }}
                 />
               </div>
