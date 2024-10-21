@@ -35,7 +35,7 @@ function Dashboard() {
               <div style={{ width: 450, height: 430, marginTop: "-160px" }}>
                 <div className="flex items-center justify-start pb-5">
                   <img src={wk} alt="Logo" className="logo-image w-12 h-12" />
-                  <h5 className="font-semibold text-xs font-poppins text-black ml-3">
+                  <h5 className="font-semibold text-[12.77px] font-poppins text-black ml-3">
                     SMK WIKRAMA BOGOR
                   </h5>
                 </div>
@@ -46,17 +46,17 @@ function Dashboard() {
                   Pengelola Beasiswa SMK Wikrama Bogor
                 </p>
                 {/* Garis panjang di atas */}
-                <hr className="border border-black mb-7 w-[600px] mt-4" />
+                <hr className="border border-black mb-7 w-[488px] mt-4" />
 
                 {/* Menambahkan div untuk ayat Al-Quran beserta artinya */}
-                <div className="bg-black shadow-lg p-6 rounded-md mt-6 w-[600px] bg-opacity-5">
-                  <p className="text-black text-center text-2xl font-arabic pb-4">
+                <div className="bg-black shadow-lg p-6 rounded-md mt-6 w-[488px] bg-opacity-5">
+                  <p className="text-black text-center text-[14px] font-arabic pb-4 italic">
                     لَآ إِكْرَاهَ فِي ٱلدِّينِۖ قَد تَّبَيَّنَ ٱلرُّشْدُ مِنَ
                     ٱلْغَيِّۚ فَمَن يَكْفُرْ بِٱلطَّٰغُوتِ وَيُؤْمِنۢ بِٱللَّهِ
                     فَقَدِ ٱسْتَمْسَكَ بِٱلْعُرْوَةِ ٱلْوُثْقَىٰ لَا ٱنفِصَامَ
                     لَهَاۗ وَٱللَّهُ سَمِيعٌ عَلِيمٌ
                   </p>
-                  <p className="text-black text-center italic">
+                  <p className="text-black text-center italic text-[13px]">
                     "Tidak ada paksaan untuk (memasuki) agama (Islam);
                     sesungguhnya telah jelas jalan yang benar daripada jalan
                     yang sesat. Karena itu, barang siapa yang ingkar kepada
@@ -73,8 +73,8 @@ function Dashboard() {
               <div className="absolute inset-0 bg-gradient-to-r  via-transparent to-transparent rounded-full"></div>
               <div
                 style={{
-                  width: 484,
-                  height: 484,
+                  width: 561,
+                  height: 561,
                 }}
                 className="flex justify-center items-center rounded-full bg-[#AFAFAF] bg-opacity-20 "
               >
@@ -82,8 +82,8 @@ function Dashboard() {
                   src={masjid}
                   className="rounded-full object-cover"
                   style={{
-                    width: 430,
-                    height: 430,
+                    width: 497,
+                    height: 497,
                   }}
                 />
               </div>
