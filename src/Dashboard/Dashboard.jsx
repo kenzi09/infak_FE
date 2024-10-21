@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 import wk from "../assets/img/wk.jpg"; // Impor logo
 import Navbar from "../assets/Items/navbar";
-// import gedungWk from "../assets/img/gedungWk.jpg";
 import masjid from "../assets/img/masjid.jpg";
 import Dashboard2 from "./Dashboard2";
 import Dashboard3 from "./Dashboard3";
@@ -22,17 +21,16 @@ function Dashboard() {
       <div className="min-h-screen bg-gray-100 flex flex-col bg-image font-pt">
         <Navbar />
         <div className="welcome-section text-center pt-9">
-          <h4 className="" style={{ fontSize: 28 }}>
+          <p className="" style={{ fontSize: 25 }}>
             <span>Selamat datang, </span>
             <span className="font-bold text-gray-800">Nama Pengguna!</span>
-          </h4>
-          <p className="text-xl text-gray-500">Rayon | Rombel | NIS</p>
+          </p>
+          <p className="text-[18px] text-gray-500">Rayon | Rombel | NIS</p>
         </div>
         <main className="flex-grow flex flex-col items-center justify-center">
           <div className="justify-around flex w-full h-3/4 pb-7">
             <div className="flex justify-center items-center">
-              {/* Tambahkan margin-top negatif untuk mengangkat teks */}
-              <div style={{ width: 450, height: 430, marginTop: "-160px" }}>
+              <div style={{ width: 450, height: 430, marginTop: "-100px" }}>
                 <div className="flex items-center justify-start pb-5">
                   <img src={wk} alt="Logo" className="logo-image w-12 h-12" />
                   <h5 className="font-semibold text-[12.77px] font-poppins text-black ml-3">
@@ -70,7 +68,7 @@ function Dashboard() {
             </div>
 
             <div className="flex justify-center items-center relative">
-              <div className="absolute inset-0 bg-gradient-to-r  via-transparent to-transparent rounded-full"></div>
+              <div className="absolute inset-0 bg-gradient-to-r via-transparent to-transparent rounded-full"></div>
               <div
                 style={{
                   width: 561,

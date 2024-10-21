@@ -99,7 +99,7 @@
             >
               <div className="flex items-center gap-2 text-white pb-4">
                 {/* Icon with background */}
-                <div className="bg-white p-2 rounded-full">
+                <div className="bg-white w-[46px] h-[46px] rounded-full flex justify-center items-center pb-[3px] pl-[2px]">
                   <TiCreditCard className="text-black text-xl w-[30px] h-[30px]" />
                 </div>
                 <div className="w-[270px] mt-9">
