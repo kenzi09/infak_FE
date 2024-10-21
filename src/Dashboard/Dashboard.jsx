@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 import wk from "../assets/img/wk.jpg"; // Impor logo
 import Navbar from "../assets/Items/navbar";
-// import gedungWk from "../assets/img/gedungWk.jpg";
 import masjid from "../assets/img/masjid.jpg";
 import Dashboard2 from "./Dashboard2";
 import Dashboard3 from "./Dashboard3";
@@ -31,7 +30,6 @@ function Dashboard() {
         <main className="flex-grow flex flex-col items-center justify-center">
           <div className="justify-around flex w-full h-3/4 pb-7">
             <div className="flex justify-center items-center">
-              {/* Tambahkan margin-top negatif untuk mengangkat teks */}
               <div style={{ width: 450, height: 430, marginTop: "-160px" }}>
                 <div className="flex items-center justify-start pb-5">
                   <img src={wk} alt="Logo" className="logo-image w-12 h-12" />
@@ -45,32 +43,29 @@ function Dashboard() {
                 <p className="text-xl text-black pb-2">
                   Pengelola Beasiswa SMK Wikrama Bogor
                 </p>
-                {/* Garis panjang di atas */}
-                <hr className="border border-black mb-7 w-[488px] mt-4" />
 
-                {/* Menambahkan div untuk ayat Al-Quran beserta artinya */}
-                <div className="bg-black shadow-lg p-6 rounded-md mt-6 w-[488px] bg-opacity-5">
-                  <p className="text-black text-center text-[14px] font-arabic pb-4 italic">
-                    لَآ إِكْرَاهَ فِي ٱلدِّينِۖ قَد تَّبَيَّنَ ٱلرُّشْدُ مِنَ
-                    ٱلْغَيِّۚ فَمَن يَكْفُرْ بِٱلطَّٰغُوتِ وَيُؤْمِنۢ بِٱللَّهِ
-                    فَقَدِ ٱسْتَمْسَكَ بِٱلْعُرْوَةِ ٱلْوُثْقَىٰ لَا ٱنفِصَامَ
-                    لَهَاۗ وَٱللَّهُ سَمِيعٌ عَلِيمٌ
+                <hr className="border border-black mb-7 w-[600px] mt-4" />
+
+                <div className="bg-[#A9B782] bg-opacity-50 shadow-lg p-6 rounded-xl mt-6 w-[600px]">
+                <p className="text-black text-center text-2xl font-arabic pb-4">
+                    مَثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمُ فِي سَبِيلِ
+                    اللَّهِ كَمَثَلِ حَبَّةٍ أَنبَتَتْ سَبْعَ سَنَابِلَ فِي
+                    كُلِّ سُنبُلَةٍ مِّئَةُ حَبَّةٍ وَاللَّهُ يُضَاعِفُ
+                    لِمَن يَشَاءُ وَاللَّهُ وَاسِعٌ عَلِيمٌ
                   </p>
-                  <p className="text-black text-center italic text-[13px]">
-                    "Tidak ada paksaan untuk (memasuki) agama (Islam);
-                    sesungguhnya telah jelas jalan yang benar daripada jalan
-                    yang sesat. Karena itu, barang siapa yang ingkar kepada
-                    thaghut dan beriman kepada Allah, maka sesungguhnya ia telah
-                    berpegang teguh pada tali yang sangat kuat yang tidak akan
-                    putus. Allah Maha Mendengar, Maha
-                    Mengetahui."(Q.s.Al-Baqarah:256)
+                  <p className="text-black text-center italic">
+                    "Perumpamaan orang yang menginfakkan hartanya di jalan
+                    Allah adalah seperti sebutir biji yang menumbuhkan tujuh
+                    bulir, di setiap bulir ada seratus biji. Allah melipatgandakan
+                    (pahala) bagi siapa yang Dia kehendaki. Dan Allah Maha Luas,
+                    Maha Mengetahui." (Q.S. Al-Baqarah: 265)
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="flex justify-center items-center relative">
-              <div className="absolute inset-0 bg-gradient-to-r  via-transparent to-transparent rounded-full"></div>
+              <div className="absolute inset-0 bg-gradient-to-r via-transparent to-transparent rounded-full"></div>
               <div
                 style={{
                   width: 561,

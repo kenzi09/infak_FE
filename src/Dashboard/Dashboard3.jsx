@@ -1,6 +1,6 @@
-// src/App.jsx
 import React from "react";
-import wk3 from "../assets/img/wk3.jpg";
+// import wk3 from "../assets/img/wk3.jpg";
+import duha1 from "../assets/img/duha1.jpg";
 import bg3 from "../assets/img/bg3.jpg";
 import wk from "../assets/img/wk.jpg"; // Import gambar wk.jpg
 import fbIcon from "../assets/icons/facebook.png"; // Import ikon facebook
@@ -20,12 +20,14 @@ function Dashboard3() {
       {/* Main Content */}
       <main className="flex items-center mb-28 justify-evenly">
         {/* Left Image Section */}
-        <div className="w-[580px] h-[491px]">
+        <div className="w-[580px] h-[491px] relative">
           <img
-            src={wk3}
+            src={duha1}
             alt="SMK Wikrama Bogor"
             className="rounded-[10px] shadow-2xl w-full h-full object-cover "
           />
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-l from-[#E9F3DC] to-transparent opacity-65"></div>
         </div>
 
         {/* Right Text Section */}
@@ -36,8 +38,10 @@ function Dashboard3() {
           >
             <div className="absolute top-[-36px] left-[200px] w-[71px] h-[71px] bg-[#A9B782] rounded-full"></div>
             <div className="absolute top-[-45px] left-[235px] w-[43px] h-[43px] bg-[#467049] rounded-full"></div>
+
             <p className="text-justify font-serif p-3">
             Berinfaq dan bershodaqoh adalah wujud nyata dari rasa syukur atas nikmat yang Allah berikan kepada kita. Ketika kita memberikan sebagian harta melalui infaq dan shodaqoh, sejatinya harta tersebut tidak berkurang, melainkan disimpan sebagai pahala yang abadi di sisi Allah. Melalui perbuatan ini, kita tidak hanya membantu sesama, tetapi juga membersihkan diri dari sifat kikir dan mendekatkan diri kepada-Nya. Infaq membuka jalan keberkahan harta, sementara shodaqoh menjadi sumber keberkahan hidup. Bukan soal seberapa besar yang kita berikan, namun ketulusan hati dalam memberi yang menjadi inti dari kebaikan ini.
+
             </p>
           </div>
         </div>
@@ -45,17 +49,17 @@ function Dashboard3() {
 
       {/* Footer */}
       <footer className="bg-[#A9B782] text-white h-[261px]">
-        <div className=" pt-8 pl-48 pb-6">
+        <div className=" pt-8 pl-48 pb-6 ml-20">
           <div className="flex items-center pb-3">
             <img src={wk} alt="Logo Wikrama" className="mr-4 w-[50px] " />
             <h4 className="font-bold">SMK Wikrama Bogor</h4>
           </div>
-          <hr className="border-t-1 border-white mt-2 w-[225px] " />
+          <hr className="border-t-1 border-white mt-2 w-[250px] " />
         </div>
 
         <div className="container mx-auto flex justify-evenly items-start font-serif">
           {/* Left Section - Logo and Address */}
-          <div className="text-left items-start w-[250px]">
+          <div className="text-left items-start w-[300px]">
             <h4 className="font-bold">Alamat</h4>
             <p>Jl. Raya Wangun Kelurahan Sindangsari Bogor Timur 16720</p>
           </div>
