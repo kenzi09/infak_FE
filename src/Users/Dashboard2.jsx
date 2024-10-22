@@ -67,7 +67,7 @@
 
     return (
       <div
-        className="min-h-screen bg-[#faf8ef] flex flex-col items-center justify-center px-10"
+        className="min-h-screen bg-[#FFFDF1] flex flex-col items-center justify-center px-10"
         style={{
           fontFamily: "'PT Serif', serif",
         }}
