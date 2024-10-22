@@ -1,36 +1,44 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import pohoncoin from "../assets/img/pohoncoin.jpg";
+import { useNavigate } from "react-router-dom";
 import masjid from "../assets/img/masjid.jpg";
 import logoWikrama from "../assets/img/logoWikrama.png";
 
 function Login() {
-  // State untuk email, password, dan pesan error
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // Untuk navigasi ke halaman lain
 
-  // Fungsi untuk menangani submit form
   const handleSubmit = async (e) => {
     e.preventDefault(); // Mencegah reload halaman
 
     try {
       // Mengirim POST request ke API
       const response = await axios.post(
-        "https://dane-novel-mastiff.ngrok-free.app/api/login",
-        {
-          email,
-          password,
-        }
+        "https://viper-proud-nearly.ngrok-free.app/api/login",
+        { email, password }
       );
 
-      // Jika login berhasil, simpan token ke localStorage atau state
+      // Simpan token ke localStorage
       localStorage.setItem("token", response.data.token);
-      alert("Login berhasil!");
 
-      // Kamu bisa redirect user ke halaman lain setelah login
-      // contoh: window.location.href = "/dashboard";
+      // Ambil role dari respons API
+      const userRole = response.data.data.role; // Akses role dari object data
+      console.log("Role yang diterima:", userRole);
+
+      // Navigasi berdasarkan role
+      if (userRole === "Admin") {
+        navigate("/Admin/");
+      } else if (userRole === "Siswa") {
+        navigate("/User/dashboard");
+      } else if (userRole === "PS") {
+        navigate("/PS/");
+      } else {
+        setError("Role tidak dikenali.");
+      }
     } catch (err) {
+      console.error(err); // Tampilkan kesalahan di consol
       // Jika ada error, tampilkan pesan error
       setError("Email atau password salah.");
     }
@@ -38,25 +46,24 @@ function Login() {
 
   return (
     <div
-      className="min-h-screen overflow-hidden flex items-center justify-center bg-[#f9f7f1] lg:bg-none"
+      className="min-h-screen overflow-hidden flex items-center justify-center bg-[#FFFDF1] lg:bg-none"
       style={{ fontFamily: "PT Serif", fontWeight: "400", fontStyle: "normal" }}
     >
       <div className="flex flex-col lg:flex-row w-full h-full relative">
         {/* Bagian Gambar Samping */}
         <div className="hidden lg:block lg:w-[475px] h-full relative">
-  <img
-    src={masjid}
-    alt="Gambar Samping"
-    className="w-full h-[100vh] object-cover object-[29%] rounded-none lg:rounded-tl-none lg:rounded-tr-[45px] lg:rounded-br-[45px] lg:rounded-bl-none"
-  />
-  <div
-    className="absolute top-0 right-0 bottom-0 lg:w-[200px] rounded-none lg:rounded-tl-none lg:rounded-tr-[45px] lg:rounded-br-[45px] lg:rounded-bl-none"
-    style={{
-      background: "linear-gradient(to right, rgba(0, 0, 0, 0), #AFAFAF)",
-    }}
-  ></div>
-</div>
-
+          <img
+            src={masjid}
+            alt="Gambar Samping"
+            className="w-full h-[100vh] object-cover object-[29%] rounded-none lg:rounded-tl-none lg:rounded-tr-[45px] lg:rounded-br-[45px] lg:rounded-bl-none"
+          />
+          <div
+            className="absolute top-0 right-0 bottom-0 lg:w-[200px] rounded-none lg:rounded-tl-none lg:rounded-tr-[45px] lg:rounded-br-[45px] lg:rounded-bl-none"
+            style={{
+              background: "linear-gradient(to right, rgba(0, 0, 0, 0), #AFAFAF)",
+            }}
+          ></div>
+        </div>
 
         {/* Bagian Form (Responsive) */}
         <div
@@ -103,14 +110,11 @@ function Login() {
             >
               <div className="w-full">
                 {/* Tampilkan pesan error jika ada */}
-                {error && (
-                  <div className="text-red-500 text-sm mb-4">{error}</div>
-                )}
 
                 <form
                   onSubmit={handleSubmit}
                   className="lg:space-y-6 space-y-5"
-                >
+                  >
                   <div>
                     <label
                       htmlFor="email"
@@ -126,13 +130,13 @@ function Login() {
                       className="appearance-none w-[261.68px] h-[35.57px] lg:w-[434px] lg:h-[59px] px-4 py-2 border border-gray-300 lg:rounded-[20px] rounded-[12.06px] text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-600 bg-[#A9B782]"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                    />
+                      />
                   </div>
                   <div>
                     <label
                       htmlFor="password"
                       className="block lg:text-base text-[12.06px] font-medium text-black mb-1"
-                    >
+                      >
                       Password
                     </label>
                     <input
@@ -143,8 +147,11 @@ function Login() {
                       className="appearance-none w-[261.68px] h-[35.57px] lg:w-[434px] lg:h-[59px] px-4 py-2 border border-gray-300 lg:rounded-[20px] rounded-[12.06px] text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-600 bg-[#A9B782]"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                    />
+                      />
                   </div>
+                      {error && (
+                        <div className="text-red-500 text-sm mb-4">{error}</div>
+                      )}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
                       <input
