@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 // import "../../index.css";
-import "../../Dashboard/index.css"
+import "../../Users/index.css"
 import { FaUser, FaChevronDown, FaUserCircle, FaKey, FaSignOutAlt } from "react-icons/fa"; 
 import wk from "../img/wk.jpg"
 

@@ -8,7 +8,7 @@ import igIcon from "../assets/icons/instagram.png"; // Import ikon instagram
 
 function Dashboard3() {
   return (
-    <div className="min-h-screen bg-[#FAF8EF]">
+    <div className="min-h-screen bg-[#FFFDF1]">
       {/* Header Section */}
       <div className="flex mb-24 pt-12 justify-center items-center">
         <h1 className="text-4xl font-bold text-left  decoration-2 font-serif">
