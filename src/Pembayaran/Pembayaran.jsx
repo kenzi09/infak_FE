@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import wk from "../assets/img/wk.jpg"; // Mengimpor gambar
 import { FiLogOut } from "react-icons/fi"; // Mengimpor icon logout
 import TabelApp from "./pages/TabelApp";
-import Tagihan from "./pages/Tagihan";
+// import Tagihan from "./pages/Tagihan";
 import Riwayat from "./pages/Riwayat";
 import Popup from "../assets/Items/Popup";
 
@@ -78,7 +78,7 @@ function App() {
         </div>
 
         <div className="flex space-x-4 mb-6 ml-12">
-          {["tabel", "tagihan", "riwayat"].map((tab) => (
+          {["tabel", "riwayat"].map((tab) => (
             <button
               key={tab}
               className={`py-2 px-4 rounded flex items-center space-x-2 ${
@@ -97,8 +97,6 @@ function App() {
               <span>
                 {tab === "tabel"
                   ? "Tabel App"
-                  : tab === "tagihan"
-                  ? "Total Tagihan"
                   : "Riwayat App"}
               </span>
             </button>
@@ -106,9 +104,6 @@ function App() {
         </div>
 
         {activeTab === "tabel" && <TabelApp />}
-
-        {activeTab === "tagihan" && <Tagihan />}
-
 
         {activeTab === "riwayat" && <Riwayat />}
       </div>
