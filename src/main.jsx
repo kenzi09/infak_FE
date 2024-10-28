@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'; // Im
 import Dashboard from './Users/Dashboard';
 import Login from './Login/login';
 import Pembayaran from './Pembayaran/pembayaran';
+import Pembayaran2 from './Pembayaran2/Tagihan';
 import Nunggak from './assets/Items/Menunggak';
 import Sidebar from './PS/Sidebar/index'; // Sidebar
 import TabelSiswa from './PS/Siswa'; // Halaman Siswa
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/User/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/User/pembayaran" element={<Pembayaran />} />
+        <Route path="/User/pembayaran2" element={<Pembayaran2 />} />
         <Route path="/User/nunggak" element={<Nunggak />} />
         <Route path="/PS" element={<Sidebar />}>
           <Route path='/PS/' element={<Home />} /> {/* Dashboard tampil di halaman utama */}
