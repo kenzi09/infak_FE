@@ -15,6 +15,10 @@ const Dashboard2 = () => {
     navigate("/user/pembayaran");
   };
 
+  const handleImageClick = () => {
+    navigate("/user/pembayaran2"); // Navigates to the Tagihan component
+  };
+
   useEffect(() => {
     const observerCard = new IntersectionObserver(
       (entries) => {
@@ -95,9 +99,10 @@ const Dashboard2 = () => {
         {/* Image Section */}
         <div
           ref={imageRef}
+          onClick={handleImageClick}
           className={`relative w-[473px] h-[281px] rounded-lg shadow-lg overflow-hidden my-2 transition-transform duration-[1000ms] ease-in-out transform ${
             isImageVisible ? "translate-x-0" : "translate-x-20"
-          }`}
+          } hover:scale-105 cursor-pointer`}
           style={{ borderRadius: "20px", margin: "60px" }}
         >
           <div
