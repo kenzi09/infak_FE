@@ -18,33 +18,33 @@ function Dashboard() {
     }, 500); // Tunggu 500ms sebelum animasi dimulai
   }, []);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
 
-    const getUserData = async () => {
-      try {
-        // Memastikan format string untuk Bearer token benar
-        const response = await axios.get("https://viper-proud-nearly.ngrok-free.app/api/siswa", {
-          headers: {
-            Authorization: `Bearer ${token}` // Gunakan backticks (`) untuk template string
-          },
-        });
+  //   const getUserData = async () => {
+  //     try {
+  //       // Memastikan format string untuk Bearer token benar
+  //       const response = await axios.get("https://viper-proud-nearly.ngrok-free.app/api/siswa", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}` // Gunakan backticks (`) untuk template string
+  //         },
+  //       });
 
-        // Simpan data user di state
-        setUserData(response.data);
-      } catch (error) {
-        console.error("Error mengambil data user:", error);
-      }
-    };
+  //       // Simpan data user di state
+  //       setUserData(response.data);
+  //     } catch (error) {
+  //       console.error("Error mengambil data user:", error);
+  //     }
+  //   };
 
-    getUserData();
-  }, []); // Bergantung pada array kosong agar hanya dieksekusi sekali
+  //   getUserData();
+  // }, []); // Bergantung pada array kosong agar hanya dieksekusi sekali
 
-  if (!userData) {
-    return <div>Loading...</div>;
-  } else {
-    console.log(userData); // Menampilkan data user di console untuk pengecekan
-  }
+  // if (!userData) {
+  //   return <div>Loading...</div>;
+  // } else {
+  //   console.log(userData); // Menampilkan data user di console untuk pengecekan
+  // }
 
   return (
     <>
@@ -53,7 +53,7 @@ function Dashboard() {
         <div className="welcome-section text-center pt-9">
           <p className="" style={{ fontSize: 25 }}>
             <span>Selamat datang, </span>
-            <span className="font-bold text-gray-800">{userData.name}</span> {/* Menampilkan nama user */}
+            <span className="font-bold text-gray-800">Kenzi Badrika</span> {/* Menampilkan nama user */}
           </p>
           <p className="text-[18px] text-gray-500">Rayon | Rombel | NIS</p>
         </div>
