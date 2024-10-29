@@ -9,8 +9,16 @@ function Tagihan() {
 
   const paymentItems = [
     { id: 1, name: "Zakat Infaq dan Shadaqoh Bulan Juli 2024", amount: 50000 },
-    { id: 2, name: "Zakat Infaq dan Shadaqoh Bulan Juli 2024", amount: 50000 },
-    { id: 3, name: "Zakat Infaq dan Shadaqoh Bulan Juli 2024", amount: 50000 },
+    {
+      id: 2,
+      name: "Zakat Infaq dan Shadaqoh Bulan Agustus 2024",
+      amount: 60000,
+    },
+    {
+      id: 3,
+      name: "Zakat Infaq dan Shadaqoh Bulan September 2024",
+      amount: 70000,
+    },
     // Add more items as needed
   ];
 
@@ -36,10 +44,10 @@ function Tagihan() {
       </div>
 
       <h2 className="text-center text-2xl font-bold pt-3">
-        Bukti App Zakat Infaq & Shadaqoh
+        Total Tagihan Zakat Infaq & Shadaqoh
       </h2>
 
-      <div className="flex flex-col space-y-2  p-12 pt-10">
+      <div className="flex flex-col space-y-2 p-12 pt-10">
         <div className="text-left space-y-1">
           <div className="flex">
             <p className="font-pt-serrif font-semibold w-60">NIS</p>
@@ -70,26 +78,47 @@ function Tagihan() {
         </div>
       </div>
 
-      <button
-        className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded-[4px] space-x-2"
-        style={{
-          background: "linear-gradient(to bottom, #456F47, #69895C, #A9B782)",
-        }}
-      >
-        <span>Bayar Sekarang</span>
-      </button>
+      <div className="flex justify-end">
+        <button
+          className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded-[4px] space-x-2"
+          style={{
+            background: "linear-gradient(to bottom, #456F47, #69895C, #A9B782)",
+          }}
+        >
+          <span>Bayar Sekarang</span>
+        </button>
+      </div>
 
       <hr className="my-4 border-t-2 border-gray-300" />
 
       {paymentItems.map((item) => (
-        <div key={item.id} className="flex items-center ml-12 mr-12 mt-5">
-          {/* Checkbox di luar div utama */}
-          <input
-            type="checkbox"
-            checked={selectedItems.includes(item.id)}
-            onChange={() => handleSelectItem(item.id)}
-            className="mr-4"
-          />
+        <div
+          key={item.id}
+          className={`flex items-center ml-12 mr-12 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+            selectedItems.includes(item.id)
+              ? "opacity-100 scale-105"
+              : "opacity-80 scale-100"
+          }`}
+          onClick={() => handleSelectItem(item.id)} // Tambahkan fungsi untuk memilih item
+        >
+          {/* Custom checkbox */}
+          <div
+            onClick={() => handleSelectItem(item.id)} // Add click handler to the checkbox
+            className={`flex items-center justify-center cursor-pointer mr-4 w-7 h-7 border-2 rounded ${
+              selectedItems.includes(item.id)
+                ? "border-transparent"
+                : "border-black"
+            }`}
+            style={{
+              backgroundColor: selectedItems.includes(item.id)
+                ? "#A9B782"
+                : "transparent",
+            }}
+          >
+            {selectedItems.includes(item.id) && (
+              <span className="text-white font-bold">✓</span>
+            )}
+          </div>
 
           {/* Div utama yang berisi item */}
           <div
@@ -112,10 +141,12 @@ function Tagihan() {
                 No. Rekening: <span className="font-bold">1078742696</span>
               </p>
               <p className="text-gray-700 text-xs">
-                Nama Rekening: <span className="font-bold">SMK Wikrama Bogor</span>
+                Nama Rekening:{" "}
+                <span className="font-bold">SMK Wikrama Bogor</span>
               </p>
               <p className="text-gray-700 text-xs">
-                Bank: <span className="font-bold">Bank Syariah Indonesia (BSI)</span>
+                Bank:{" "}
+                <span className="font-bold">Bank Syariah Indonesia (BSI)</span>
               </p>
             </div>
 
