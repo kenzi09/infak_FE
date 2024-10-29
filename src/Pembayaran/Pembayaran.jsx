@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import wk from "../assets/img/wk.jpg"; // Mengimpor gambar
 import { FiLogOut } from "react-icons/fi"; // Mengimpor icon logout
 import TabelApp from "./pages/TabelApp";
-// import Tagihan from "./pages/Tagihan";
 import Riwayat from "./pages/Riwayat";
+import { useNavigate } from "react-router-dom";
 import Popup from "../assets/Items/Popup";
 
 function App() {
   const [activeTab, setActiveTab] = useState("tabel"); // State untuk menyimpan tampilan aktif
   const [showPopup, setShowPopup] = useState(false); // State untuk mengatur visibilitas popup
+  const navigate = useNavigate(); // Menyiapkan navigasi
 
   const handleTabClick = (tab) => {
     setActiveTab(tab); // Mengubah tampilan aktif
@@ -19,6 +20,11 @@ function App() {
 
   const closePopup = () => {
     setShowPopup(false); // Menutup popup
+  };
+
+  // Fungsi untuk tombol Back
+  const handleBackClick = () => {
+    navigate("/user/dashboard"); // Kembali ke halaman Dashboard2
   };
 
   return (
@@ -35,6 +41,7 @@ function App() {
           </div>
 
           <button
+            onClick={handleBackClick} // Mengatur klik tombol untuk navigasi
             className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded-[4px] space-x-2"
             style={{
               background:
@@ -104,7 +111,6 @@ function App() {
         </div>
 
         {activeTab === "tabel" && <TabelApp />}
-
         {activeTab === "riwayat" && <Riwayat />}
       </div>
     </>
