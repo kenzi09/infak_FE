@@ -31,7 +31,7 @@ function Tagihan() {
   };
 
   return (
-    <div className="w-full bg-[#FFFDF1] px-28 py-12">
+    <div className="w-full bg-[#FFFDF1] px-28 py-12 min-h-screen">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-4">
           <img src={wk} alt="Logo" className="w-[71px] h-[71px]" />
