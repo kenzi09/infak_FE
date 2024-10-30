@@ -102,7 +102,7 @@ function Riwayat() {
                   popupData.status === "Sudah Dibayar"
                     ? "bg-green-100 text-green-700"
                     : popupData.status === "Belum Ditagihkan"
-                    ? "bg-yellow-100 text-yellow-700"
+                    ? "bg-[#FCF596] text-[#DEAE48]"
                     : "bg-red-100 text-red-700"
                 }`}
               >

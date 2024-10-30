@@ -32,10 +32,10 @@ const PembayaranPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFDF1]" style={{ fontFamily: "'PT Serif', serif" }}>
+    <div className="min-h-screen bg-[#FFFDF1]" style={{ fontFamily: "'PT Serif', serif" }}> {/* Add font style here */}
       <Navbar />
       <main className="container mx-auto py-12 px-4">
-        <section className="p-8 rounded-lg shadow-md mb-8" style={{
+        <section className="p-8 rounded-2xl shadow-md mb-8" style={{
           backgroundImage: `url(${bg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -45,13 +45,13 @@ const PembayaranPage = () => {
             {/* Manual Dropdown for Zakat */}
             <div className="relative w-1/2">
               <button
-                className="w-full p-3 border border-[#A9B782] rounded bg-[#A9B782] text-white flex justify-between items-center focus:outline-none"
+                className="w-full p-3 border border-[#A9B782] rounded-xl bg-[#A9B782] text-white flex justify-between items-center focus:outline-none"
                 onClick={toggleZakatDropdown}
               >
                 {selectedZakat}
                 <FaChevronDown
                   className={`ml-2 transform transition-transform duration-300 ${isZakatDropdownOpen ? 'rotate-180' : ''}`} 
-                /> {/* Add rotating animation */}
+                />
               </button>
               {isZakatDropdownOpen && (
                 <div className="absolute mt-2 w-full bg-white border border-[#A9B782] rounded shadow-md z-10">
@@ -71,13 +71,13 @@ const PembayaranPage = () => {
             {/* Manual Dropdown for Bulan */}
             <div className="relative w-1/2">
               <button
-                className="w-full p-3 border border-[#A9B782] rounded bg-[#A9B782] text-white flex justify-between items-center focus:outline-none"
+                className="w-full p-3 border border-[#A9B782] rounded-xl bg-[#A9B782] text-white flex justify-between items-center focus:outline-none"
                 onClick={toggleBulanDropdown}
               >
                 {selectedBulan}
                 <FaChevronDown
                   className={`ml-2 transform transition-transform duration-300 ${isBulanDropdownOpen ? 'rotate-180' : ''}`} 
-                /> {/* Add rotating animation */}
+                />
               </button>
               {isBulanDropdownOpen && (
                 <div className="absolute mt-2 w-full bg-white border border-[#A9B782] rounded shadow-md z-10">
@@ -96,7 +96,7 @@ const PembayaranPage = () => {
           </div>
         </section>
 
-        <section className="p-8 rounded-lg shadow-md" style={{
+        <section className="p-8 rounded-2xl shadow-md" style={{
           backgroundImage: `url(${bg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
