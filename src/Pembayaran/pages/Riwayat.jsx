@@ -32,7 +32,7 @@ function Riwayat() {
                                 <th className="py-2 px-4 text-left text-white">Bulan</th>
                                 <th className="py-2 px-4 text-left text-white">Tanggal Bayar</th>
                                 <th className="py-2 px-4 text-left text-white">Nominal Tagihan</th>
-                                <th className="py-2 px-4 text-left text-white">Tanda Tangan Ortu</th>
+                                <th className="py-2 px-4 text-left text-white">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,7 +69,7 @@ function Riwayat() {
                                 <th className="py-2 px-4 text-left text-white">Bulan</th>
                                 <th className="py-2 px-4 text-left text-white">Tanggal Bayar</th>
                                 <th className="py-2 px-4 text-left text-white">Nominal Tagihan</th>
-                                <th className="py-2 px-4 text-left text-white">Tanda Tangan Ortu</th>
+                                <th className="py-2 px-4 text-left text-white">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -106,7 +106,7 @@ function Riwayat() {
                                 <th className="py-2 px-4 text-left text-white">Bulan</th>
                                 <th className="py-2 px-4 text-left text-white">Tanggal Bayar</th>
                                 <th className="py-2 px-4 text-left text-white">Nominal Tagihan</th>
-                                <th className="py-2 px-4 text-left text-white">Tanda Tangan Ortu</th>
+                                <th className="py-2 px-4 text-left text-white">Status</th>
                             </tr>
                         </thead>
                         <tbody>
