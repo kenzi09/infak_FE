@@ -1,6 +1,8 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import bg from "../assets/img/bg3.jpg";
 import Navbar from "../assets/Items/navbar";
+import { FaChevronDown } from 'react-icons/fa'; // Import icon
 
 const PembayaranPage = () => {
   const [isZakatDropdownOpen, setIsZakatDropdownOpen] = useState(false);
@@ -30,7 +32,7 @@ const PembayaranPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFDF1]">
+    <div className="min-h-screen bg-[#FFFDF1]" style={{ fontFamily: "'PT Serif', serif" }}>
       <Navbar />
       <main className="container mx-auto py-12 px-4">
         <section className="p-8 rounded-lg shadow-md mb-8" style={{
@@ -43,17 +45,20 @@ const PembayaranPage = () => {
             {/* Manual Dropdown for Zakat */}
             <div className="relative w-1/2">
               <button
-                className="w-full p-3 border border-[#A9B782] rounded bg-[#A9B782] text-white focus:outline-none"
+                className="w-full p-3 border border-[#A9B782] rounded bg-[#A9B782] text-white flex justify-between items-center focus:outline-none"
                 onClick={toggleZakatDropdown}
               >
                 {selectedZakat}
+                <FaChevronDown
+                  className={`ml-2 transform transition-transform duration-300 ${isZakatDropdownOpen ? 'rotate-180' : ''}`} 
+                /> {/* Add rotating animation */}
               </button>
               {isZakatDropdownOpen && (
-                <div className="absolute mt-2 w-full bg-white border border-[#A9B782] rounded shadow-md">
+                <div className="absolute mt-2 w-full bg-white border border-[#A9B782] rounded shadow-md z-10">
                   {zakatOptions.map((option) => (
                     <div
                       key={option}
-                      className="p-2 hover:bg-gray-200 cursor-pointer"
+                      className="p-3 hover:bg-[#A9B782] hover:text-white cursor-pointer transition-colors duration-200"
                       onClick={() => handleZakatSelect(option)}
                     >
                       {option}
@@ -66,17 +71,20 @@ const PembayaranPage = () => {
             {/* Manual Dropdown for Bulan */}
             <div className="relative w-1/2">
               <button
-                className="w-full p-3 border border-[#A9B782] rounded bg-[#A9B782] text-white focus:outline-none"
+                className="w-full p-3 border border-[#A9B782] rounded bg-[#A9B782] text-white flex justify-between items-center focus:outline-none"
                 onClick={toggleBulanDropdown}
               >
                 {selectedBulan}
+                <FaChevronDown
+                  className={`ml-2 transform transition-transform duration-300 ${isBulanDropdownOpen ? 'rotate-180' : ''}`} 
+                /> {/* Add rotating animation */}
               </button>
               {isBulanDropdownOpen && (
-                <div className="absolute mt-2 w-full bg-white border border-[#A9B782] rounded shadow-md">
+                <div className="absolute mt-2 w-full bg-white border border-[#A9B782] rounded shadow-md z-10">
                   {bulanOptions.map((option) => (
                     <div
                       key={option}
-                      className="p-2 hover:bg-gray-200 cursor-pointer"
+                      className="p-3 hover:bg-[#A9B782] hover:text-white cursor-pointer transition-colors duration-200"
                       onClick={() => handleBulanSelect(option)}
                     >
                       {option}
