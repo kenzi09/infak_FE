@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../assets/icons/Logo.png";
 import PP from "../../assets/icons/PP.png";
@@ -55,6 +54,13 @@ export default function SidebarAdmin() {
     };
   }, []);
 
+  // Function to get current date in format 'DD Month YYYY'
+  const getFormattedDate = () => {
+    const today = new Date();
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    return today.toLocaleDateString('id-ID', options);
+  };
+
   return (
     <div className="flex flex-col h-screen">
       {/* Navbar Section */}
@@ -64,6 +70,9 @@ export default function SidebarAdmin() {
           <span className="text-lg font-semibold">Infaq Shodaqoh</span>
         </div>
         <div className="flex items-center">
+          {/* Tanggal */}
+          <div className="mr-8 text-gray-600 font-semibold">{getFormattedDate()}</div>
+          
           {/* Ikon Dropdown */}
           <div className="flex items-center mr-2 cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
             {isDropdownOpen ? (
