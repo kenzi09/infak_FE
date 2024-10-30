@@ -8,7 +8,7 @@ const PembayaranPage = () => {
   const [selectedZakat, setSelectedZakat] = useState('Masukkan Pilihan Zakat');
   const [selectedBulan, setSelectedBulan] = useState('Masukkan Bulan');
 
-  const zakatOptions = ['Zakat Fitrah', 'Zakat Mal', 'Zakat Penghasilan'];
+  const zakatOptions = ['Zakat Fitrah', 'Zakat Mall'];
   const bulanOptions = ['Januari', 'Februari', 'Maret', 'April'];
 
   const toggleZakatDropdown = () => {

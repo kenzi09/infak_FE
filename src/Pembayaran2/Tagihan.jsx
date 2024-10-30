@@ -1,25 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import bg from "../assets/img/bg.png";
 import StatusBlmBayar from "../assets/Items/Status/StatusBlmBayar";
 import Menunggak from "../assets/Items/Status/Menunggak";
-import wk from "../assets/img/wk.jpg"; // Mengimpor gambar
+import wk from "../assets/img/wk.jpg";
 
 function Tagihan() {
   const [selectedItems, setSelectedItems] = useState([]);
+  const navigate = useNavigate();
 
   const paymentItems = [
     { id: 1, name: "Zakat Infaq dan Shadaqoh Bulan Juli 2024", amount: 50000 },
-    {
-      id: 2,
-      name: "Zakat Infaq dan Shadaqoh Bulan Agustus 2024",
-      amount: 60000,
-    },
-    {
-      id: 3,
-      name: "Zakat Infaq dan Shadaqoh Bulan September 2024",
-      amount: 70000,
-    },
-    // Add more items as needed
+    { id: 2, name: "Zakat Infaq dan Shadaqoh Bulan Agustus 2024", amount: 60000 },
+    { id: 3, name: "Zakat Infaq dan Shadaqoh Bulan September 2024", amount: 70000 },
   ];
 
   const handleSelectItem = (itemId) => {
@@ -28,6 +21,10 @@ function Tagihan() {
         ? prevSelected.filter((id) => id !== itemId)
         : [...prevSelected, itemId]
     );
+  };
+
+  const handleBayarSekarang = () => {
+    navigate("/User/pembayaran3");
   };
 
   return (
@@ -80,6 +77,7 @@ function Tagihan() {
 
       <div className="flex justify-end">
         <button
+          onClick={handleBayarSekarang}
           className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded-[4px] space-x-2"
           style={{
             background: "linear-gradient(to bottom, #456F47, #69895C, #A9B782)",
@@ -99,11 +97,11 @@ function Tagihan() {
               ? "opacity-100 scale-105"
               : "opacity-80 scale-100"
           }`}
-          onClick={() => handleSelectItem(item.id)} // Tambahkan fungsi untuk memilih item
+          onClick={() => handleSelectItem(item.id)}
         >
           {/* Custom checkbox */}
           <div
-            onClick={() => handleSelectItem(item.id)} // Add click handler to the checkbox
+            onClick={() => handleSelectItem(item.id)}
             className={`flex items-center justify-center cursor-pointer mr-4 w-7 h-7 border-2 rounded ${
               selectedItems.includes(item.id)
                 ? "border-transparent"
@@ -120,7 +118,7 @@ function Tagihan() {
             )}
           </div>
 
-          {/* Div utama yang berisi item */}
+          {/* Item content */}
           <div
             className="p-2 rounded-[5px] flex justify-between h-[120px] items-center shadow-xl w-full"
             style={{
