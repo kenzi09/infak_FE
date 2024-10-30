@@ -1,43 +1,115 @@
 import React, { useState } from "react";
-import { FaCheckCircle } from "react-icons/fa"; // Import ikon centang
+import { FaCheckCircle, FaChevronDown, FaChevronUp } from "react-icons/fa"; // Import ikon panah
 
-// Daftar data pembayaran
 const paymentsData = [
   {
-    month: "Januari",
-    amount: "Rp 100,000",
-    status: "Sudah Dibayar",
-    details: {
-      paymentDate: "10 Januari 2024",
-      bankInfo: "BNI VA 123456789",
-      notes: "",
-    },
+    year: "TP 2024/2025",
+    data: [
+      {
+        month: "Januari",
+        amount: "Rp 100,000",
+        status: "Sudah Dibayar",
+        details: {
+          paymentDate: "10 Januari 2024",
+          bankInfo: "BNI VA 123456789",
+          notes: "",
+        },
+      },
+      {
+        month: "Februari",
+        amount: "Rp 100,000",
+        status: "Belum Ditagihkan",
+        details: {},
+      },
+      {
+        month: "Maret",
+        amount: "Rp 100,000",
+        status: "Belum Dibayar",
+        details: {},
+      },
+    ],
   },
   {
-    month: "Februari",
-    amount: "Rp 100,000",
-    status: "Belum Ditagihkan",
-    details: {},
+    year: "TP 2023/2024",
+    data: [
+      {
+        month: "Januari",
+        amount: "Rp 100,000",
+        status: "Sudah Dibayar",
+        details: {
+          paymentDate: "10 Januari 2024",
+          bankInfo: "BNI VA 123456789",
+          notes: "",
+        },
+      },
+      {
+        month: "Februari",
+        amount: "Rp 100,000",
+        status: "Belum Ditagihkan",
+        details: {},
+      },
+      {
+        month: "Maret",
+        amount: "Rp 100,000",
+        status: "Belum Dibayar",
+        details: {},
+      },
+    ],
   },
   {
-    month: "Maret",
-    amount: "Rp 100,000",
-    status: "Belum Dibayar",
-    details: {},
+    year: "TP 2022/2023",
+    data: [
+      {
+        month: "Januari",
+        amount: "Rp 100,000",
+        status: "Sudah Dibayar",
+        details: {
+          paymentDate: "10 Januari 2024",
+          bankInfo: "BNI VA 123456789",
+          notes: "",
+        },
+      },
+      {
+        month: "Februari",
+        amount: "Rp 100,000",
+        status: "Belum Ditagihkan",
+        details: {},
+      },
+      {
+        month: "Maret",
+        amount: "Rp 100,000",
+        status: "Belum Dibayar",
+        details: {},
+      },
+    ],
   },
 ];
 
 function Riwayat() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState({});
   const [popupData, setPopupData] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleDropdown = (year) => {
+    setIsOpen((prevState) => ({
+      ...prevState,
+      [year]: !prevState[year],
+    }));
+  };
 
   const openModal = (data) => {
     setPopupData(data);
-    setIsOpen(true);
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    setIsOpen(false);
+    setIsModalOpen(false);
+  };
+
+  const handleOverlayClick = (e) => {
+    if (e.target.id === "modal-overlay") {
+      closeModal();
+    }
   };
 
   return (
@@ -45,56 +117,82 @@ function Riwayat() {
       <p className="font-serif font-bold text-lg">Kartu Zakat Infaq dan Shodaqoh</p>
       <br />
 
-      {/* Tabel pembayaran */}
-      <div className="overflow-x-auto mt-2">
-        <table className="min-w-full bg-[#FFFDF1] border border-gray-200 rounded-lg">
-          <thead className="bg-[#A9B782]">
-            <tr>
-              <th className="py-2 px-4 text-left text-white">Bulan</th>
-              <th className="py-2 px-4 text-left text-white">Nominal Tagihan</th>
-              <th className="py-2 px-4 text-left text-white">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {paymentsData.map((data, index) => (
-              <tr
-                key={index}
-                className="border-b border-gray-200 cursor-pointer hover:bg-gray-100"
-                onClick={() => openModal(data)}
-              >
-                <td className="py-2 px-4">{data.month}</td>
-                <td className="py-2 px-4">{data.amount}</td>
-                <td className="py-2 px-4">
-                  <span
-                    className={`font-semibold px-2 py-1 rounded-lg ${
-                      data.status === "Sudah Dibayar"
-                        ? "bg-green-100 text-green-700"
-                        : data.status === "Belum Ditagihkan"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : "bg-red-100 text-red-700"
-                    }`}
-                  >
-                    {data.status}
-                    {data.status === "Sudah Dibayar" && (
-                      <FaCheckCircle className="inline ml-2 text-green-700" />
-                    )}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {paymentsData.map((yearData, index) => (
+        <div key={index} className="mb-4">
+          {/* Dropdown Header */}
+          <div
+            className="flex justify-between items-center cursor-pointer"
+            onClick={() => toggleDropdown(yearData.year)}
+          >
+            <p className="font-serif font-bold text-lg">{yearData.year}</p>
+            {isOpen[yearData.year] ? (
+              <FaChevronUp className="text-gray-500" />
+            ) : (
+              <FaChevronDown className="text-gray-500" />
+            )}
+          </div>
+
+          {/* Garis Horizontal */}
+          <hr className="border-gray-300 my-2" />
+
+          {/* Data Tabel */}
+          {isOpen[yearData.year] && (
+            <div className="overflow-x-auto mt-2">
+              <table className="min-w-full bg-[#FFFDF1] border border-gray-200 rounded-lg">
+                <thead className="bg-[#A9B782]">
+                  <tr>
+                    <th className="py-2 px-4 text-left text-white">Bulan</th>
+                    <th className="py-2 px-4 text-left text-white">Nominal Tagihan</th>
+                    <th className="py-2 px-4 text-left text-white">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {yearData.data.map((data, idx) => (
+                    <tr
+                      key={idx}
+                      className="border-b border-gray-200 cursor-pointer hover:bg-gray-100"
+                      onClick={() => openModal(data)}
+                    >
+                      <td className="py-2 px-4">{data.month}</td>
+                      <td className="py-2 px-4">{data.amount}</td>
+                      <td className="py-2 px-4">
+                        <span
+                          className={`font-semibold px-2 py-1 rounded-full ${
+                            data.status === "Sudah Dibayar"
+                              ? "bg-green-100 text-green-700"
+                              : data.status === "Belum Ditagihkan"
+                              ? "bg-yellow-100 text-yellow-700"
+                              : "bg-red-100 text-red-700"
+                          }`}
+                        >
+                          {data.status}
+                          {data.status === "Sudah Dibayar" && (
+                            <FaCheckCircle className="inline ml-2 text-green-700" />
+                          )}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      ))}
 
       {/* Modal Popup */}
-      {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      {isModalOpen && (
+        <div
+          id="modal-overlay"
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+          onClick={handleOverlayClick}
+        >
           <div className="bg-[#FFFDF1] rounded-lg p-6 w-full max-w-lg relative">
             <button
               onClick={closeModal}
               className="absolute top-2 right-4 text-gray-500 hover:text-gray-700 text-3xl font-bold p-2"
             >
-              &times; {/* Menggunakan karakter untuk silang */}
+              &times;
             </button>
             <div className="text-center">
               <span
@@ -130,9 +228,7 @@ function Riwayat() {
                 </p>
               </div>
               <div className="border-t border-gray-300 mt-4"></div>
-              <p className="text-sm text-gray-500 mt-2 ml-2">
-                Diterima oleh Wikrama
-              </p>
+              <p className="text-sm text-gray-500 mt-2 ml-2">Diterima oleh Wikrama</p>
               <p className="text-lg text-gray-600 ml-2">
                 Catatan: {popupData.details?.notes || "-"}
               </p>
