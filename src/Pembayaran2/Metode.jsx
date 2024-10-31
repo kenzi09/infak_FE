@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import bg from "../assets/img/bg3.jpg";
 import Navbar from "../assets/Items/navbar";
 import { FaChevronDown } from 'react-icons/fa'; // Import icon
+import { useNavigate } from "react-router-dom";
+import Back from '../assets/Items/ButtonBack';
 
 const PembayaranPage = () => {
   const [isZakatDropdownOpen, setIsZakatDropdownOpen] = useState(false);
   const [isBulanDropdownOpen, setIsBulanDropdownOpen] = useState(false);
   const [selectedZakat, setSelectedZakat] = useState('Masukkan Pilihan Zakat');
   const [selectedBulan, setSelectedBulan] = useState('Masukkan Bulan');
+  const navigate = useNavigate(); // Menyiapkan navigasi
 
   const zakatOptions = ['Zakat Fitrah', 'Zakat Mall'];
   const bulanOptions = ['Januari', 'Februari', 'Maret', 'April'];
@@ -31,11 +34,35 @@ const PembayaranPage = () => {
     setIsBulanDropdownOpen(false);
   };
 
+  const handleBackClick = () => {
+    navigate("/user/dashboard"); // Kembali ke halaman Dashboard2
+  };
+
   return (
     <div className="min-h-screen bg-[#FFFDF1]" style={{ fontFamily: "'PT Serif', serif" }}> {/* Add font style here */}
       <Navbar />
+      {/* <div className="flex items-center justify-between p-5 absolute">
+
+<button
+onClick={handleBackClick} // Mengatur klik tombol untuk navigasi
+className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded-[4px] space-x-2"
+style={{
+  background:
+  "linear-gradient(to bottom, #456F47, #69895C, #A9B782)",
+  }}
+  >
+  <FiLogOut className="text-white" />
+            <span>Back</span>
+          </button>
+          </div> */}
+
       <main className="container mx-auto py-12 px-4">
+<<<<<<< HEAD:src/Pembayaran2/Metode.jsx
+        <Back/>
+        <section className="p-8 rounded-lg shadow-md mb-8" style={{
+=======
         <section className="p-8 rounded-2xl shadow-md mb-8" style={{
+>>>>>>> a288fcf0502f3f0d367af7934da61b6bc1bda750:src/Pembayaran3/Metode.jsx
           backgroundImage: `url(${bg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useLocation, useNavigate } from 'react-router-dom';
 import './index.css';
 
@@ -7,30 +8,39 @@ const View = () => {
   const siswa = location.state?.siswa; // Dapatkan data siswa dari state
   const navigate = useNavigate(); // Gunakan navigate untuk berpindah halaman
 
-  const [approvals, setApprovals] = useState([
-    { id: 1, bulan: 'Januari', approved: true },
-    { id: 2, bulan: 'Februari', approved: true },
-    { id: 3, bulan: 'Maret', approved: true },
-    { id: 3, bulan: 'April', approved: false },
-    { id: 3, bulan: 'Mei', approved: false },
-    { id: 3, bulan: 'Juni', approved: false },
-    { id: 3, bulan: 'Juli', approved: false },
-    { id: 3, bulan: 'Agustus', approved: false },
-    { id: 3, bulan: 'September', approved: false },
-    { id: 3, bulan: 'Oktober', approved: false },
-    { id: 3, bulan: 'November', approved: false },
-    { id: 3, bulan: 'Desember', approved: false },
-  ]);
+  // const [approvals, setApprovals] = useState([
+  //   { id: 1, bulan: 'Januari', approved: true },
+  //   { id: 2, bulan: 'Februari', approved: true },
+  //   { id: 3, bulan: 'Maret', approved: true },
+  //   { id: 3, bulan: 'April', approved: false },
+  //   { id: 3, bulan: 'Mei', approved: false },
+  //   { id: 3, bulan: 'Juni', approved: false },
+  //   { id: 3, bulan: 'Juli', approved: false },
+  //   { id: 3, bulan: 'Agustus', approved: false },
+  //   { id: 3, bulan: 'September', approved: false },
+  //   { id: 3, bulan: 'Oktober', approved: false },
+  //   { id: 3, bulan: 'November', approved: false },
+  //   { id: 3, bulan: 'Desember', approved: false },
+  // ]);
 
-  const handleApprovalChange = (id) => {
-    setApprovals((prevApprovals) =>
-      prevApprovals.map((approval) =>
-        approval.id === id
-          ? { ...approval, approved: !approval.approved }
-          : approval
-      )
-    );
-  };
+  const [dataBulan, setDataBulan] = useState([]);
+
+    useEffect(() => {
+        // Fungsi untuk mengambil data dari API
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://127.0.0.1:8000/api/bulan");
+                setDataBulan(response.data?.data || []); // Menyimpan data bulan ke dalam state, atau set kosong jika tidak ada data
+                const userRole = response.data; // Akses role dari object data
+                console.log("data yang diterima", userRole);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
 
   return (
     <div className="container mx-auto mt-3">
@@ -55,10 +65,10 @@ const View = () => {
           </tr>
         </thead>
         <tbody>
-          {approvals.map((approval, index) => (
+          {dataBulan.map((approval, index) => (
             <tr key={approval.id} className="hover:bg-gray-50 transition">
               <td className="px-6 py-4 border-b">{index + 1}</td>
-              <td className="px-6 py-4 border-b">{approval.bulan}</td>
+              <td className="px-6 py-4 border-b">{approval.nama_bulan}</td>
               <td className="px-6 py-4 border-b text-center">
                 <button
                   // onClick={() => handleApprovalChange(approval.id)}

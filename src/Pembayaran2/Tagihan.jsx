@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import bg from "../assets/img/bg.png";
 import StatusBlmBayar from "../assets/Items/Status/StatusBlmBayar";
 import Menunggak from "../assets/Items/Status/Menunggak";
-import wk from "../assets/img/wk.jpg";
+import Navbar from "../assets/Items/navbar";
+import { FiLogOut } from "react-icons/fi"; // Mengimpor icon logout
 
 function Tagihan() {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -25,21 +26,30 @@ function Tagihan() {
   };
 
   const handleBayarSekarang = () => {
-    navigate("/User/pembayaran3");
+    navigate("/User/pembayaran2");
   };
 
+  const handleBackClick = () => {
+    navigate("/user/dashboard"); // Kembali ke halaman Dashboard2
+  };
   return (
-    <div className="w-full bg-[#FFFDF1] px-28 py-12 min-h-screen">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-4">
-          <img src={wk} alt="Logo" className="w-[71px] h-[71px]" />
-          <h1 className="text-xl font-bold poppins">
-            PENGELOLA BEASISWA
-            <br />
-            SMK WIKRAMA BOGOR
-          </h1>
+    <div className="w-full bg-[#FFFDF1] min-h-screen">
+      <Navbar/>
+      <div className="flex items-center justify-between p-5 absolute">
+
+          <button
+            onClick={handleBackClick} // Mengatur klik tombol untuk navigasi
+            className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded-[4px] space-x-2"
+            style={{
+              background:
+                "linear-gradient(to bottom, #456F47, #69895C, #A9B782)",
+            }}
+          >
+            <FiLogOut className="text-white" /> {/* Icon logout */}
+            <span>Back</span>
+          </button>
         </div>
-      </div>
+    <div className=" px-28 py-12 ">
 
       <h2 className="text-center text-2xl font-bold pt-3">
         Total Tagihan Zakat Infaq & Shadaqoh
@@ -65,14 +75,7 @@ function Tagihan() {
             <p className="font-pt-serrif font-semibold w-60">Rayon</p>
             <p className="font-pt-serrif font-semibold flex-1">: Cibedug 3</p>
           </div>
-          <div className="flex">
-            <p className="font-pt-serrif font-semibold w-60">
-              Pembimbing Rayon
-            </p>
-            <p className="font-pt-serrif font-semibold flex-1">
-              : Muslih, S.Kom
-            </p>
-          </div>
+          
         </div>
       </div>
 
@@ -157,6 +160,7 @@ function Tagihan() {
           </div>
         </div>
       ))}
+    </div>
     </div>
   );
 }

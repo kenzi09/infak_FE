@@ -1,19 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
+import axios from "axios";
 
 const TabelSiswa = () => {
-  const [approvals, setApprovals] = useState([
-    { id: 1, name: 'John Doe', nis: 12209077, approved: false },
-    { id: 2, name: 'Jane Smith', nis: 12209078, approved: false },
-    { id: 3, name: 'Mark Miller', nis: 12209079, approved: false },
-  ]);
+  // const [approvals, setApprovals] = useState([
+  //   { id: 1, name: 'John Doe', nis: 12209077, approved: false },
+  //   { id: 2, name: 'Jane Smith', nis: 12209078, approved: false },
+  //   { id: 3, name: 'Mark Miller', nis: 12209079, approved: false },
+  // ]);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log("Token yang diterima adalah: ", token);
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/siswa-ps", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Respon API:", response.data);
+        setUserData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []); // Bergantung pada array kosong agar hanya dieksekusi sekali
 
   const navigate = useNavigate();
 
   const handleView = (siswa) => {
     navigate('/ps/view', { state: { siswa } }); // Kirim data siswa menggunakan state
   };
+
+  if (!userData) {
+    return (
+        <div className="flex items-center justify-center min-h-screen">
+          <div>Loading...</div>
+        </div>
+    );
+  }
+
+  
 
   return (
     <div className="container mx-auto mt-10">
@@ -28,7 +61,7 @@ const TabelSiswa = () => {
           </tr>
         </thead>
         <tbody>
-          {approvals.map((approval, index) => (
+          {userData.map((approval, index) => (
             <tr key={approval.id} className="hover:bg-gray-50 transition">
               <td className="px-6 py-4 border-b">{index + 1}</td>
               <td className="px-6 py-4 border-b">{approval.name}</td>

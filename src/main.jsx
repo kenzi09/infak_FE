@@ -5,7 +5,7 @@ import Dashboard from './Users/Dashboard';
 import Login from './Login/login';
 import Pembayaran from './Pembayaran/pembayaran';
 import Pembayaran2 from './Pembayaran2/Tagihan';
-import Pembayaran3 from './Pembayaran3/Metode';
+import Pembayaran3 from './Pembayaran2/Metode';
 import Nunggak from './assets/Items/Menunggak';
 import Sidebar from './PS/Sidebar/index'; // Sidebar
 import TabelSiswa from './PS/Siswa'; // Halaman Siswa
@@ -20,9 +20,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/User/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/User/pembayaran" element={<Pembayaran />} />
-        <Route path="/User/pembayaran2" element={<Pembayaran2 />} />
-        <Route path="/User/pembayaran3" element={<Pembayaran3 />} />
+        <Route path="/User/riwayat" element={<Pembayaran />} />
+        <Route path="/User/pembayaran" element={<Pembayaran2 />} />
+        <Route path="/User/pembayaran2" element={<Pembayaran3 />} />
         <Route path="/User/nunggak" element={<Nunggak />} />
         <Route path="/PS" element={<Sidebar />}>
           <Route path='/PS/' element={<Home />} /> {/* Dashboard tampil di halaman utama */}

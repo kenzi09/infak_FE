@@ -1,15 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import wk from "../assets/img/wk.jpg"; // Mengimpor gambar
 import { FiLogOut } from "react-icons/fi"; // Mengimpor icon logout
+import { useNavigate } from "react-router-dom";
 import TabelApp from "./pages/TabelApp";
 import Riwayat from "./pages/Riwayat";
-import { useNavigate } from "react-router-dom";
-import Popup from "../assets/Items/Popup";
+import Navbar from "../assets/Items/navbar";
 
 function App() {
   const [activeTab, setActiveTab] = useState("tabel"); // State untuk menyimpan tampilan aktif
   const [showPopup, setShowPopup] = useState(false); // State untuk mengatur visibilitas popup
+  const [userName, setUserName] = useState(""); // State untuk menyimpan nama pengguna
+  const [userNIS, setUserNIS] = useState(""); // State untuk menyimpan nama pengguna
+  const [userRayon, setUserRayon] = useState(""); // State untuk menyimpan nama pengguna
+  const [userRombel, setUserRombel] = useState(""); // State untuk menyimpan nama pengguna
   const navigate = useNavigate(); // Menyiapkan navigasi
+
+  useEffect(() => {
+    // Mengambil nama pengguna dari localStorage
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+        const { name } = JSON.parse(storedUserData);
+        const { rayon } = JSON.parse(storedUserData);
+        const { nama_rombel } = JSON.parse(storedUserData);
+        const { nis } = JSON.parse(storedUserData);
+        setUserName(name);
+        setUserRayon(rayon);
+        setUserRombel(nama_rombel);
+        setUserNIS(nis);
+    }
+}, []);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab); // Mengubah tampilan aktif
@@ -18,9 +37,6 @@ function App() {
     }
   };
 
-  const closePopup = () => {
-    setShowPopup(false); // Menutup popup
-  };
 
   // Fungsi untuk tombol Back
   const handleBackClick = () => {
@@ -28,17 +44,9 @@ function App() {
   };
 
   return (
-    <>
-      <div className="w-full bg-[#FFFDF1] px-28 py-12 min-h-screen">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-4">
-            <img src={wk} alt="Logo" className="w-[71px] h-[71px]" />
-            <h1 className="text-xl font-bold poppins">
-              PENGELOLA BEASISWA
-              <br />
-              SMK WIKRAMA BOGOR
-            </h1>
-          </div>
+    <div className="w-full bg-[#FFFDF1] min-h-screen ">
+    <Navbar/>
+        <div className="flex items-center justify-between p-5 absolute">
 
           <button
             onClick={handleBackClick} // Mengatur klik tombol untuk navigasi
@@ -52,8 +60,8 @@ function App() {
             <span>Back</span>
           </button>
         </div>
+      <div className="px-28 py-24 ">
 
-        <hr className="my-4 border-t-2 border-gray-300" />
 
         <h2 className="text-center text-2xl font-bold pt-3">
           Bukti App Zakat Infaq & Shadaqoh
@@ -63,23 +71,19 @@ function App() {
           <div className="text-left space-y-1">
             <div className="flex">
               <p className="font-pt-serrif font-semibold w-60">NIS</p>
-              <p className="font-pt-serrif font-semibold flex-1">: 12209077</p>
+              <p className="font-pt-serrif font-semibold flex-1">: {userNIS}</p>
             </div>
             <div className="flex">
               <p className="font-pt-serrif font-semibold w-60">Nama</p>
-              <p className="font-pt-serrif font-semibold flex-1">: Kenzi Badrika</p>
+              <p className="font-pt-serrif font-semibold flex-1">: {userName}</p>
             </div>
             <div className="flex">
               <p className="font-pt-serrif font-semibold w-60">Rombel</p>
-              <p className="font-pt-serrif font-semibold flex-1">: PPLG XII-1</p>
+              <p className="font-pt-serrif font-semibold flex-1">: {userRombel}</p>
             </div>
             <div className="flex">
               <p className="font-pt-serrif font-semibold w-60">Rayon</p>
-              <p className="font-pt-serrif font-semibold flex-1">: Cibedug 3</p>
-            </div>
-            <div className="flex">
-              <p className="font-pt-serrif font-semibold w-60">Pembimbing Rayon</p>
-              <p className="font-pt-serrif font-semibold flex-1">: Muslih, S.Kom</p>
+              <p className="font-pt-serrif font-semibold flex-1">: {userRayon}</p>
             </div>
           </div>
         </div>
@@ -113,7 +117,7 @@ function App() {
         {activeTab === "tabel" && <TabelApp />}
         {activeTab === "riwayat" && <Riwayat />}
       </div>
-    </>
+    </div>
   );
 }
 
