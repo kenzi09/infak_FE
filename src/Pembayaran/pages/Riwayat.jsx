@@ -7,7 +7,7 @@ const paymentsData = [
     data: [
       {
         month: "Januari",
-        amount: "Rp 100,000",
+        amount: "Rp.50.000",
         status: "Sudah Dibayar",
         details: {
           paymentDate: "10 Januari 2024",
@@ -17,13 +17,13 @@ const paymentsData = [
       },
       {
         month: "Februari",
-        amount: "Rp 100,000",
+        amount: "Rp.50.000",
         status: "Belum Ditagihkan",
         details: {},
       },
       {
         month: "Maret",
-        amount: "Rp 100,000",
+        amount: "Rp.50.000",
         status: "Belum Dibayar",
         details: {},
       },
@@ -34,7 +34,7 @@ const paymentsData = [
     data: [
       {
         month: "Januari",
-        amount: "Rp 100,000",
+        amount: "Rp.50.000",
         status: "Sudah Dibayar",
         details: {
           paymentDate: "10 Januari 2024",
@@ -44,13 +44,13 @@ const paymentsData = [
       },
       {
         month: "Februari",
-        amount: "Rp 100,000",
+        amount: "Rp.50.000",
         status: "Belum Ditagihkan",
         details: {},
       },
       {
         month: "Maret",
-        amount: "Rp 100,000",
+        amount: "Rp.50.000",
         status: "Belum Dibayar",
         details: {},
       },
@@ -61,7 +61,7 @@ const paymentsData = [
     data: [
       {
         month: "Januari",
-        amount: "Rp 100,000",
+        amount: "Rp.50.000",
         status: "Sudah Dibayar",
         details: {
           paymentDate: "10 Januari 2024",
@@ -71,13 +71,13 @@ const paymentsData = [
       },
       {
         month: "Februari",
-        amount: "Rp 100,000",
+        amount: "Rp.50.000",
         status: "Belum Ditagihkan",
         details: {},
       },
       {
         month: "Maret",
-        amount: "Rp 100,000",
+        amount: "Rp.50.000",
         status: "Belum Dibayar",
         details: {},
       },
