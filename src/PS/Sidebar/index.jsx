@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Logo from "../../assets/icons/Logo.png";
-import { BiHomeAlt, BiGridAlt } from "react-icons/bi";
+import { BiHomeAlt, BiGridAlt, BiLogOut } from "react-icons/bi";
 import '../index.css';
 
 export default function Sidebar() {
@@ -17,7 +17,7 @@ export default function Sidebar() {
     <div className="flex bg-white">
       <div className="h-screen border-r border-gray-200 w-64 px-9 space-y-24">
         <div className="flex flex-row items-center pt-8">
-          <img src={Logo} alt="#" className="w-10 h-10" />
+          <img src={Logo} alt="Logo" className="w-10 h-10" />
           <div className="ml-3 text-gray-700">Infaq Shodaqoh</div>
         </div>
         <div className="space-y-24">
@@ -45,7 +45,16 @@ export default function Sidebar() {
           </div>
         </div>
       </div>
+      
       <div className="flex-1 p-8 bg-white">
+        {/* Navbar */}
+        <div className="flex justify-end items-center pb-4 border-b border-gray-200">
+          <button className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors duration-200">
+            <BiLogOut className="mr-2 text-lg" />
+            Logout
+          </button>
+        </div>
+        
         <Outlet /> {/* Konten dinamis akan ditampilkan di sini */}
       </div>
     </div>
