@@ -16,7 +16,7 @@ function Login() {
     try {
       // Mengirim POST request ke API
       const response = await axios.post(
-        "https://viper-proud-nearly.ngrok-free.app/api/login",
+        "http://127.0.0.1:8000/api/login",
         { email, password }
       );
 
@@ -26,6 +26,8 @@ function Login() {
       // Ambil role dari respons API
       const userRole = response.data.data.role; // Akses role dari object data
       console.log("Role yang diterima:", userRole);
+      console.log("token yang diterima:", response.data.token);
+      console.log(response.data);
 
       // Navigasi berdasarkan role
       if (userRole === "Admin") {

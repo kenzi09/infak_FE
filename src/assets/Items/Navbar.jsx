@@ -1,34 +1,62 @@
 import React, { useState, useEffect, useRef } from "react";
-// import "../../index.css";
-import "../../Users/index.css"
 import { FaUser, FaChevronDown, FaUserCircle, FaKey, FaSignOutAlt } from "react-icons/fa"; 
-import wk from "../img/wk.jpg"
+import wk from "../img/wk.jpg";
+import axios from "axios"; // Tambahkan axios untuk panggilan API
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false); 
-    const dropdownRef = useRef(null); // Referensi ke elemen dropdown
-  
+    const [userName, setUserName] = useState(""); // State untuk menyimpan nama pengguna
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        // Mengambil nama pengguna dari localStorage
+        const storedUserData = localStorage.getItem("userData");
+        if (storedUserData) {
+            const { name } = JSON.parse(storedUserData);
+            setUserName(name);
+        }
+    }, []);
+
     const toggleDropdown = () => {
       setIsOpen(!isOpen); 
     };
 
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false); // Menutup dropdown jika klik di luar elemen
+        setIsOpen(false);
       }
     };
 
     useEffect(() => {
       if (isOpen) {
-        document.addEventListener("mousedown", handleClickOutside); // Menambahkan event listener saat dropdown terbuka
+        document.addEventListener("mousedown", handleClickOutside);
       } else {
-        document.removeEventListener("mousedown", handleClickOutside); // Menghapus event listener saat dropdown tertutup
+        document.removeEventListener("mousedown", handleClickOutside);
       }
 
       return () => {
-        document.removeEventListener("mousedown", handleClickOutside); // Cleanup event listener saat komponen unmount
+        document.removeEventListener("mousedown", handleClickOutside);
       };
     }, [isOpen]);
+
+    const handleLogout = async () => {
+        const token = localStorage.getItem("token");
+        
+        try {
+            await axios.post("http://127.0.0.1:8000/api/logout", {}, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            // Menghapus token dan data pengguna dari localStorage setelah logout
+            localStorage.removeItem("token");
+            localStorage.removeItem("userData");
+            window.location.href = "/"; // Redirect ke halaman login atau landing page
+        } catch (error) {
+            console.error("Error during logout:", error);
+        }
+    };
+    
 
     return (
         <header className="header flex justify-between items-center px-4 shadow-lg">
@@ -44,7 +72,7 @@ function Navbar() {
               className="flex items-center space-x-2 cursor-pointer"
               onClick={toggleDropdown}
             >
-              <div className="user-info text-black-800">Nama Pengguna</div>
+              <div className="user-info text-black-800">{userName}</div> {/* Menampilkan nama pengguna */}
               <FaChevronDown className="text-black-600" />
             </div>
             {isOpen && (
@@ -58,7 +86,10 @@ function Navbar() {
                     <FaKey className="mr-2" />
                     Ganti Password
                   </li>
-                  <li className="p-2 flex items-center hover:bg-gray-100 cursor-pointer">
+                  <li
+                    className="p-2 flex items-center hover:bg-gray-100 cursor-pointer"
+                    onClick={handleLogout} // Menambahkan event handler logout
+                  >
                     <FaSignOutAlt className="mr-2" />
                     Logout
                   </li>
@@ -67,7 +98,7 @@ function Navbar() {
             )}
           </div>
         </header>
-    )
+    );
 }
 
 export default Navbar;

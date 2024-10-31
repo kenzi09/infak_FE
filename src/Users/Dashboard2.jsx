@@ -13,11 +13,11 @@ const Dashboard2 = () => {
   const [isImageVisible, setIsImageVisible] = useState(false);
 
   const handleCardClick = () => {
-    navigate("/user/pembayaran");
+    navigate("/user/riwayat");
   };
 
   const handleImageClick = () => {
-    navigate("/user/pembayaran2"); // Navigates to the Tagihan component
+    navigate("/user/pembayaran"); // Navigates to the Tagihan component
   };
 
   useEffect(() => {
