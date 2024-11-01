@@ -1,12 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import bg from "../../assets/img/bg.png";
 import StatusBlmBayar from "../../assets/Items/Status/StatusBlmBayar";
 import Menunggak from "../../assets/Items/Status/Menunggak";
-// import Navbar from "../../assets/Items/Navbar";
-import Navbar from "../../assets/Items/navbar";
-import { FiLogOut } from "react-icons/fi"; // Mengimpor icon logout
 
 function Tagihan() {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -18,6 +14,17 @@ function Tagihan() {
     { id: 3, bulan: "September", amount: 70000 },
   ];
 
+  const handleBayarSekarang = () => {
+    // Ambil nama bulan yang dipilih dari paymentItems berdasarkan selectedItems
+    const selectedMonths = paymentItems
+      .filter(item => selectedItems.includes(item.id))
+      .map(item => item.bulan)
+      .join(", "); // Gabungkan bulan menjadi satu string
+  
+    navigate("/User/pembayaran2", { state: { selectedMonths } });
+  };
+  
+
   const handleSelectItem = (itemId) => {
     setSelectedItems((prevSelected) =>
       prevSelected.includes(itemId)
@@ -26,28 +33,29 @@ function Tagihan() {
     );
   };
 
-  const handleBayarSekarang = () => {
-    navigate("/User/pembayaran2");
-  };
 
-  const handleBackClick = () => {
-    navigate("/user/dashboard"); // Kembali ke halaman Dashboard2
-  };
   return (
     <div className="w-full bg-[#FFFDF1]">
 
-      <div className="flex justify-end">
-        <button
-          onClick={handleBayarSekarang}
-          className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded-[4px] space-x-2"
-          style={{
-            background: "linear-gradient(to bottom, #456F47, #69895C, #A9B782)",
-          }}
-        >
-          <span>Bayar Sekarang</span>
-        </button>
-      </div>
+{selectedItems.length > 0 && (
+  <div className="flex justify-end pt-2">
 
+        <div className="absolute ">
+          <button
+            onClick={handleBayarSekarang}
+            className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded-[4px]"
+            style={{
+              background: "linear-gradient(to bottom, #456F47, #69895C, #A9B782)",
+            }}
+          >
+            <span>Bayar Sekarang</span>
+          </button>
+        </div>
+  </div>
+      )}
+      
+      <div className="flex justify-end mt-12 ">
+      </div>
       <hr className="my-4 border-t-2 border-gray-300" />
 
       {paymentItems.map((item) => (
@@ -60,18 +68,13 @@ function Tagihan() {
           }`}
           onClick={() => handleSelectItem(item.id)}
         >
-          {/* Custom checkbox */}
           <div
             onClick={() => handleSelectItem(item.id)}
             className={`flex items-center justify-center cursor-pointer mr-4 w-7 h-7 border-2 rounded ${
-              selectedItems.includes(item.id)
-                ? "border-transparent"
-                : "border-black"
+              selectedItems.includes(item.id) ? "border-transparent" : "border-black"
             }`}
             style={{
-              backgroundColor: selectedItems.includes(item.id)
-                ? "#A9B782"
-                : "transparent",
+              backgroundColor: selectedItems.includes(item.id) ? "#A9B782" : "transparent",
             }}
           >
             {selectedItems.includes(item.id) && (
@@ -79,7 +82,6 @@ function Tagihan() {
             )}
           </div>
 
-          {/* Item content */}
           <div
             className="p-2 rounded-[5px] flex justify-between h-[120px] items-center shadow-xl w-full"
             style={{

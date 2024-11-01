@@ -35,7 +35,7 @@ function Pembayaran() {
   // Kondisi untuk menampilkan konten berdasarkan path
   if (location.pathname === "/user/pembayaran") {
     return (
-      <div className="w-full bg-[#FFFDF1] min-h-screen">
+      <div className="w-full bg-[#FFFDF1] min-h-screen pt-12">
         <Navbar />
         <div className="px-28 py-14">
         <h2 className="text-center text-2xl font-bold pt-3">
@@ -74,7 +74,7 @@ function Pembayaran() {
   }
 
   return (
-    <div className="w-full bg-[#FFFDF1] min-h-screen">
+    <div className="w-full bg-[#FFFDF1] min-h-screen pt-12">
       <Navbar />
       <div className="px-28 py-14">
         <h2 className="text-center text-2xl font-bold pt-3">

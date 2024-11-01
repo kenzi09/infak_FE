@@ -1,24 +1,26 @@
-
 import React, { useState, useRef } from 'react';
-import { FaChevronDown } from 'react-icons/fa'; // Import ikon dropdown
-import { FaShoppingCart } from 'react-icons/fa'; // Import ikon keranjang
+import { FaChevronDown } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 import bg from "../../assets/img/bg3.jpg";
-import QR from "../../assets/img/QR.png"; // Path logo QRIS
-import BNI from "../../assets/img/BNI.jpg"; // Path logo Bank BNI
+import QR from "../../assets/img/QR.png";
+import BNI from "../../assets/img/BNI.jpg";
 import Navbar from "../../assets/Items/navbar";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom"; // Import useLocation
 
 const PembayaranPage = () => {
-  const [selectedZakat, setSelectedZakat] = useState('Pilih Jenis Zakat');
-  const [selectedBulan, setSelectedBulan] = useState('Pilih Bulan');
-  const [selectedPayment, setSelectedPayment] = useState(null);
+  const location = useLocation();
   const navigate = useNavigate();
   const bayarRef = useRef(null);
+
+  // Ambil data bulan yang dipilih dari tagihan.jsx
+  const selectedMonths = location.state?.selectedMonths || "Bulan belum dipilih";
+
+  // Variabel dan fungsi lainnya tetap
+  const [selectedZakat, setSelectedZakat] = useState('Pilih Jenis Zakat');
+  const [selectedPayment, setSelectedPayment] = useState(null);
   const [isZakatOpen, setIsZakatOpen] = useState(false);
-  const [isBulanOpen, setIsBulanOpen] = useState(false);
 
   const zakatOptions = ['Infaq dan Shadaqoh', 'Zakat Mall'];
-  const bulanOptions = ['Januari', 'Februari', 'Maret', 'April'];
 
   const handlePaymentSelect = (option) => {
     setSelectedPayment(option);
@@ -32,26 +34,16 @@ const PembayaranPage = () => {
     setIsZakatOpen(false);
   };
 
-  const handleBulanSelect = (option) => {
-    setSelectedBulan(option);
-    setIsBulanOpen(false);
-  };
-
-  const handleBackClick = () => {
-    navigate("/user/dashboard");
-  };
-
   const downloadQRCode = () => {
     const link = document.createElement("a");
-    link.href = QR; // Path QRIS image
+    link.href = QR;
     link.download = "QRIS.png";
     link.click();
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFDF1]" style={{ fontFamily: "'PT Serif', serif" }}>
+    <div className="min-h-screen bg-[#FFFDF1] pt-12" style={{ fontFamily: "'PT Serif', serif" }}>
       <Navbar />
-
       <main className="container mx-auto py-12 px-4">
         <section className="p-8 rounded-lg shadow-md mb-8" style={{
           backgroundImage: `url(${bg})`,
@@ -68,7 +60,7 @@ const PembayaranPage = () => {
                 onClick={() => setIsZakatOpen(!isZakatOpen)}
               >
                 <span>{selectedZakat}</span>
-                <FaChevronDown className="text-white h-5 w-5" /> {/* Ikon dropdown */}
+                <FaChevronDown className="text-white h-5 w-5" />
               </button>
               {isZakatOpen && (
                 <ul className="absolute z-10 w-full bg-white border border-[#A9B782] rounded-lg shadow-lg mt-1">
@@ -82,23 +74,13 @@ const PembayaranPage = () => {
             </div>
 
             <div className="relative w-1/2">
-              {/* Dropdown Bulan */}
-              <button
-                className="w-full p-3 border border-[#A9B782] rounded-xl bg-[#A9B782] text-white flex justify-between items-center focus:outline-none hover:bg-[#8DA06E] transition-colors duration-200"
-                onClick={() => setIsBulanOpen(!isBulanOpen)}
-              >
-                <span>{selectedBulan}</span>
-                <FaChevronDown className="text-white h-5 w-5" /> {/* Ikon dropdown */}
-              </button>
-              {isBulanOpen && (
-                <ul className="absolute z-10 w-full bg-white border border-[#A9B782] rounded-lg shadow-lg mt-1">
-                  {bulanOptions.map((option) => (
-                    <li key={option} className="p-2 hover:bg-gray-200 cursor-pointer" onClick={() => handleBulanSelect(option)}>
-                      {option}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              {/* Field Bulan yang tidak bisa diisi */}
+              <input
+                type="text"
+                value={selectedMonths}
+                readOnly
+                className="w-full p-3 border border-[#A9B782] rounded-xl bg-[#A9B782] text-white"
+              />
             </div>
           </div>
         </section>
