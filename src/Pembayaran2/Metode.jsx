@@ -53,6 +53,8 @@ const PembayaranPage = () => {
       <main className="container mx-auto py-12 px-4">
         <Back />
         <section className="p-8 rounded-2xl shadow-lg mb-8" style={{
+        <Back/>
+        <section className="p-8 rounded-lg shadow-md mb-8" style={{
           backgroundImage: `url(${bg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
