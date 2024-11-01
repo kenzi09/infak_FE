@@ -1,28 +1,6 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-function Riwayat() {
-    const [dataBulan, setDataBulan] = useState([]);
-
-    useEffect(() => {
-        // Fungsi untuk mengambil data dari API
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://127.0.0.1:8000/api/bulan");
-                setDataBulan(response.data?.data || []); // Menyimpan data bulan ke dalam state, atau set kosong jika tidak ada data
-                const userRole = response.data; // Akses role dari object data
-                console.log("data yang diterima", userRole);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
-=======
-import React, { useState } from "react";
-import { FaCheckCircle, FaChevronDown, FaChevronUp } from "react-icons/fa"; // Import ikon panah
+import { FaCheckCircle, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const paymentsData = [
   {
@@ -52,66 +30,27 @@ const paymentsData = [
       },
     ],
   },
-  {
-    year: "TP 2023/2024",
-    data: [
-      {
-        month: "Januari",
-        amount: "Rp.50.000",
-        status: "Sudah Dibayar",
-        details: {
-          paymentDate: "10 Januari 2024",
-          bankInfo: "BNI VA 123456789",
-          notes: "",
-        },
-      },
-      {
-        month: "Februari",
-        amount: "Rp.50.000",
-        status: "Belum Ditagihkan",
-        details: {},
-      },
-      {
-        month: "Maret",
-        amount: "Rp.50.000",
-        status: "Belum Dibayar",
-        details: {},
-      },
-    ],
-  },
-  {
-    year: "TP 2022/2023",
-    data: [
-      {
-        month: "Januari",
-        amount: "Rp.50.000",
-        status: "Sudah Dibayar",
-        details: {
-          paymentDate: "10 Januari 2024",
-          bankInfo: "BNI VA 123456789",
-          notes: "",
-        },
-      },
-      {
-        month: "Februari",
-        amount: "Rp.50.000",
-        status: "Belum Ditagihkan",
-        details: {},
-      },
-      {
-        month: "Maret",
-        amount: "Rp.50.000",
-        status: "Belum Dibayar",
-        details: {},
-      },
-    ],
-  },
+  // Add more years and data as needed
 ];
 
 function Riwayat() {
+  const [dataBulan, setDataBulan] = useState([]);
   const [isOpen, setIsOpen] = useState({});
   const [popupData, setPopupData] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/bulan");
+        setDataBulan(response.data?.data || []);
+        console.log("data yang diterima", response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const toggleDropdown = (year) => {
     setIsOpen((prevState) => ({
@@ -134,68 +73,14 @@ function Riwayat() {
       closeModal();
     }
   };
->>>>>>> a288fcf0502f3f0d367af7934da61b6bc1bda750
 
-    return (
-        <div className="ml-12 mr-12 ">
-            <p className="font-pt-serif font-bold">Kartu Zakat Infaq dan Shodaqoh</p>
-            <br />
+  return (
+    <div className="ml-12 mr-12">
+      <p className="font-pt-serif font-bold">Kartu Zakat Infaq dan Shodaqoh</p>
+      <br />
 
-<<<<<<< HEAD
-            <details className="mb-4">
-                <summary className="flex items-center cursor-pointer font-pt-serif font-bold">
-                    <span>TP 2024/2025</span>
-                    <svg
-                        className="ml-auto w-4 h-4 text-gray-500"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 9l-7 7-7-7"
-                        />
-                    </svg>
-                </summary>
-                <div className="overflow-x-auto mt-2">
-                    <table className="min-w-full bg-white">
-                        <thead className="bg-[#A9B782]">
-                            <tr>
-                                <th className="py-2 px-4 text-left text-white">Bulan</th>
-                                <th className="py-2 px-4 text-left text-white">Tanggal Bayar</th>
-                                <th className="py-2 px-4 text-left text-white">Nominal Tagihan</th>
-                                <th className="py-2 px-4 text-left text-white">Tanda Tangan Ortu</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {dataBulan.length > 0 ? (
-                                dataBulan.map((bulan, index) => (
-                                    <tr key={index}>
-                                        <td className="py-2 px-4">{bulan.nama_bulan}</td>
-                                        <td className="py-2 px-4">-</td>
-                                        <td className="py-2 px-4">-</td>
-                                        <td className="py-2 px-4">-</td>
-                                    </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td className="py-2 px-4" colSpan="4">
-                                        Data tidak tersedia
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-            </details>
-            <hr className="my-4" />
-=======
       {paymentsData.map((yearData, index) => (
         <div key={index} className="mb-4">
-          {/* Dropdown Header */}
           <div
             className="flex justify-between items-center cursor-pointer"
             onClick={() => toggleDropdown(yearData.year)}
@@ -207,11 +92,7 @@ function Riwayat() {
               <FaChevronDown className="text-gray-500" />
             )}
           </div>
-
-          {/* Garis Horizontal */}
           <hr className="border-gray-300 my-2" />
-
-          {/* Data Tabel */}
           {isOpen[yearData.year] && (
             <div className="overflow-x-auto mt-2">
               <table className="min-w-full bg-[#FFFDF1] border border-gray-200 rounded-lg">
@@ -256,7 +137,6 @@ function Riwayat() {
         </div>
       ))}
 
-      {/* Modal Popup */}
       {isModalOpen && (
         <div
           id="modal-overlay"
@@ -310,9 +190,10 @@ function Riwayat() {
               </p>
             </div>
           </div>
->>>>>>> a288fcf0502f3f0d367af7934da61b6bc1bda750
         </div>
-    );
+      )}
+    </div>
+  );
 }
 
 export default Riwayat;
