@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { FaChevronDown } from 'react-icons/fa'; // Import ikon dropdown
+import { FaShoppingCart } from 'react-icons/fa'; // Import ikon keranjang
 import bg from "../assets/img/bg3.jpg";
 import QR from "../assets/img/QR.png"; // Path logo QRIS
 import BNI from "../assets/img/BNI.jpg"; // Path logo Bank BNI
@@ -53,8 +54,6 @@ const PembayaranPage = () => {
       <main className="container mx-auto py-12 px-4">
         <Back />
         <section className="p-8 rounded-2xl shadow-lg mb-8" style={{
-        <Back/>
-        <section className="p-8 rounded-lg shadow-md mb-8" style={{
           backgroundImage: `url(${bg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -108,13 +107,14 @@ const PembayaranPage = () => {
           backgroundImage: `url(${bg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          backgroundColor: 'rgba(255, 255, 255, 0.5)', // Transparan
         }}>
           <h3 className="text-xl font-semibold mb-6">Pilih Metode Pembayaran</h3>
 
           {/* Pilihan Pembayaran */}
           <div className="space-y-6">
             <div
-              className={`p-6 rounded-lg shadow-md cursor-pointer ${selectedPayment === 'QRIS' ? 'bg-[#A9B782]' : 'bg-white'}`}
+              className={`p-6 rounded-lg shadow-md cursor-pointer ${selectedPayment === 'QRIS' ? 'bg-[#A9B782]' : 'bg-transparent'}`}
               onClick={() => handlePaymentSelect('QRIS')}
             >
               <div className="flex items-center space-x-4">
@@ -137,7 +137,7 @@ const PembayaranPage = () => {
             </div>
 
             <div
-              className={`p-6 rounded-lg shadow-md cursor-pointer ${selectedPayment === 'Bank BNI' ? 'bg-[#A9B782]' : 'bg-white'}`}
+              className={`p-6 rounded-lg shadow-md cursor-pointer ${selectedPayment === 'Bank BNI' ? 'bg-[#A9B782]' : 'bg-transparent'}`}
               onClick={() => handlePaymentSelect('Bank BNI')}
             >
               <div className="flex items-center space-x-4">
@@ -154,15 +154,16 @@ const PembayaranPage = () => {
               </div>
             </div>
           </div>
-        </section>
 
-        {/* Div Pembayaran */}
-        <section ref={bayarRef} className="p-8 rounded-2xl shadow-lg bg-white mt-8 text-center">
-          <button
-            className="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-colors duration-200"
-          >
-            Bayar
-          </button>
+          {/* Tombol Bayar di dalam div Pilihan Pembayaran */}
+          <div className="text-center mt-6">
+            <button
+              className="flex items-center justify-center px-6 py-3 bg-[#A9B782] text-white font-semibold rounded-lg hover:bg-[#8DA06E] transition-colors duration-200"
+            >
+              <FaShoppingCart className="mr-2" /> {/* Ikon keranjang */}
+              Bayar
+            </button>
+          </div>
         </section>
       </main>
     </div>
