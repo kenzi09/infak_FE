@@ -1,44 +1,55 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+
+import React, { useState, useRef } from 'react';
+import { FaChevronDown } from 'react-icons/fa'; // Import ikon dropdown
+import { FaShoppingCart } from 'react-icons/fa'; // Import ikon keranjang
 import bg from "../../assets/img/bg3.jpg";
+import QR from "../../assets/img/QR.png"; // Path logo QRIS
+import BNI from "../../assets/img/BNI.jpg"; // Path logo Bank BNI
 import Navbar from "../../assets/Items/navbar";
-import { FaChevronDown } from 'react-icons/fa'; // Import icon
 import { useNavigate } from "react-router-dom";
 
 const PembayaranPage = () => {
-  const [isZakatDropdownOpen, setIsZakatDropdownOpen] = useState(false);
-  const [isBulanDropdownOpen, setIsBulanDropdownOpen] = useState(false);
-  const [selectedZakat, setSelectedZakat] = useState('Masukkan Pilihan Zakat');
-  const [selectedBulan, setSelectedBulan] = useState('Masukkan Bulan');
-  const navigate = useNavigate(); // Menyiapkan navigasi
+  const [selectedZakat, setSelectedZakat] = useState('Pilih Jenis Zakat');
+  const [selectedBulan, setSelectedBulan] = useState('Pilih Bulan');
+  const [selectedPayment, setSelectedPayment] = useState(null);
+  const navigate = useNavigate();
+  const bayarRef = useRef(null);
+  const [isZakatOpen, setIsZakatOpen] = useState(false);
+  const [isBulanOpen, setIsBulanOpen] = useState(false);
 
-  const zakatOptions = ['Zakat Fitrah', 'Zakat Mall'];
+  const zakatOptions = ['Infaq dan Shadaqoh', 'Zakat Mall'];
   const bulanOptions = ['Januari', 'Februari', 'Maret', 'April'];
 
-  const toggleZakatDropdown = () => {
-    setIsZakatDropdownOpen(!isZakatDropdownOpen);
-  };
-
-  const toggleBulanDropdown = () => {
-    setIsBulanDropdownOpen(!isBulanDropdownOpen);
+  const handlePaymentSelect = (option) => {
+    setSelectedPayment(option);
+    setTimeout(() => {
+      bayarRef.current.scrollIntoView({ behavior: 'smooth' });
+    }, 200);
   };
 
   const handleZakatSelect = (option) => {
     setSelectedZakat(option);
-    setIsZakatDropdownOpen(false);
+    setIsZakatOpen(false);
   };
 
   const handleBulanSelect = (option) => {
     setSelectedBulan(option);
-    setIsBulanDropdownOpen(false);
+    setIsBulanOpen(false);
   };
 
   const handleBackClick = () => {
-    navigate("/user/dashboard"); // Kembali ke halaman Dashboard2
+    navigate("/user/dashboard");
+  };
+
+  const downloadQRCode = () => {
+    const link = document.createElement("a");
+    link.href = QR; // Path QRIS image
+    link.download = "QRIS.png";
+    link.click();
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFDF1]" style={{ fontFamily: "'PT Serif', serif" }}> {/* Add font style here */}
+    <div className="min-h-screen bg-[#FFFDF1]" style={{ fontFamily: "'PT Serif', serif" }}>
       <Navbar />
 
       <main className="container mx-auto py-12 px-4">
@@ -47,70 +58,111 @@ const PembayaranPage = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}>
-          <h2 className="text-2xl font-bold mb-10">Pembayaran</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-10">Pembayaran</h2>
+
           <div className="flex space-x-4 mb-10">
-            {/* Manual Dropdown for Zakat */}
             <div className="relative w-1/2">
+              {/* Dropdown Jenis Zakat */}
               <button
-                className="w-full p-3 border border-[#A9B782] rounded-xl bg-[#A9B782] text-white flex justify-between items-center focus:outline-none"
-                onClick={toggleZakatDropdown}
+                className="w-full p-3 border border-[#A9B782] rounded-xl bg-[#A9B782] text-white flex justify-between items-center focus:outline-none hover:bg-[#8DA06E] transition-colors duration-200"
+                onClick={() => setIsZakatOpen(!isZakatOpen)}
               >
-                {selectedZakat}
-                <FaChevronDown
-                  className={`ml-2 transform transition-transform duration-300 ${isZakatDropdownOpen ? 'rotate-180' : ''}`} 
-                />
+                <span>{selectedZakat}</span>
+                <FaChevronDown className="text-white h-5 w-5" /> {/* Ikon dropdown */}
               </button>
-              {isZakatDropdownOpen && (
-                <div className="absolute mt-2 w-full bg-white border border-[#A9B782] rounded shadow-md z-10">
+              {isZakatOpen && (
+                <ul className="absolute z-10 w-full bg-white border border-[#A9B782] rounded-lg shadow-lg mt-1">
                   {zakatOptions.map((option) => (
-                    <div
-                      key={option}
-                      className="p-3 hover:bg-[#A9B782] hover:text-white cursor-pointer transition-colors duration-200"
-                      onClick={() => handleZakatSelect(option)}
-                    >
+                    <li key={option} className="p-2 hover:bg-gray-200 cursor-pointer" onClick={() => handleZakatSelect(option)}>
                       {option}
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               )}
             </div>
 
-            {/* Manual Dropdown for Bulan */}
             <div className="relative w-1/2">
+              {/* Dropdown Bulan */}
               <button
-                className="w-full p-3 border border-[#A9B782] rounded-xl bg-[#A9B782] text-white flex justify-between items-center focus:outline-none"
-                onClick={toggleBulanDropdown}
+                className="w-full p-3 border border-[#A9B782] rounded-xl bg-[#A9B782] text-white flex justify-between items-center focus:outline-none hover:bg-[#8DA06E] transition-colors duration-200"
+                onClick={() => setIsBulanOpen(!isBulanOpen)}
               >
-                {selectedBulan}
-                <FaChevronDown
-                  className={`ml-2 transform transition-transform duration-300 ${isBulanDropdownOpen ? 'rotate-180' : ''}`} 
-                />
+                <span>{selectedBulan}</span>
+                <FaChevronDown className="text-white h-5 w-5" /> {/* Ikon dropdown */}
               </button>
-              {isBulanDropdownOpen && (
-                <div className="absolute mt-2 w-full bg-white border border-[#A9B782] rounded shadow-md z-10">
+              {isBulanOpen && (
+                <ul className="absolute z-10 w-full bg-white border border-[#A9B782] rounded-lg shadow-lg mt-1">
                   {bulanOptions.map((option) => (
-                    <div
-                      key={option}
-                      className="p-3 hover:bg-[#A9B782] hover:text-white cursor-pointer transition-colors duration-200"
-                      onClick={() => handleBulanSelect(option)}
-                    >
+                    <li key={option} className="p-2 hover:bg-gray-200 cursor-pointer" onClick={() => handleBulanSelect(option)}>
                       {option}
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               )}
             </div>
           </div>
         </section>
 
-        <section className="p-8 rounded-2xl shadow-md" style={{
+        <section className="p-8 rounded-2xl shadow-lg mb-8" style={{
           backgroundImage: `url(${bg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          backgroundColor: 'rgba(255, 255, 255, 0.5)', // Transparan
         }}>
-          <h2 className="text-2xl font-bold mb-6">Pilih Pembayaran</h2>
-          <div className="border p-10 rounded-lg bg-white flex justify-center">
-            <img src="qris_placeholder.png" alt="QRIS" className="h-40 w-auto" />
+          <h3 className="text-xl font-semibold mb-6">Pilih Metode Pembayaran</h3>
+
+          {/* Pilihan Pembayaran */}
+          <div className="space-y-6">
+            <div
+              className={`p-6 rounded-lg shadow-md cursor-pointer ${selectedPayment === 'QRIS' ? 'bg-[#A9B782]' : 'bg-transparent'}`}
+              onClick={() => handlePaymentSelect('QRIS')}
+            >
+              <div className="flex items-center space-x-4">
+                <img src={QR} alt="QRIS Logo" className="h-10 w-auto" />
+                <div>
+                  <p className="text-lg font-semibold">QRIS Scan</p>
+                  {selectedPayment === 'QRIS' && (
+                    <>
+                      <p className="text-gray-600 mt-2">Scan kode QR untuk pembayaran</p>
+                      <button
+                        onClick={downloadQRCode}
+                        className="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200"
+                      >
+                        Unduh QR Code
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={`p-6 rounded-lg shadow-md cursor-pointer ${selectedPayment === 'Bank BNI' ? 'bg-[#A9B782]' : 'bg-transparent'}`}
+              onClick={() => handlePaymentSelect('Bank BNI')}
+            >
+              <div className="flex items-center space-x-4">
+                <img src={BNI} alt="Bank BNI Logo" className="h-10 w-auto" />
+                <div>
+                  <p className="text-lg font-semibold">Bank BNI</p>
+                  {selectedPayment === 'Bank BNI' && (
+                    <div className="text-gray-600 mt-2">
+                      <p>Nomor Rekening: 1234567890</p>
+                      <p>a.n Yayasan SMK Wikrama Bogor</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Tombol Bayar di dalam div Pilihan Pembayaran */}
+          <div className="text-center mt-6">
+            <button
+              className="flex items-center justify-center px-6 py-3 bg-[#A9B782] text-white font-semibold rounded-lg hover:bg-[#8DA06E] transition-colors duration-200"
+            >
+              <FaShoppingCart className="mr-2" /> {/* Ikon keranjang */}
+              Bayar
+            </button>
           </div>
         </section>
       </main>
