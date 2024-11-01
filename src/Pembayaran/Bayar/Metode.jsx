@@ -1,10 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import bg from "../assets/img/bg3.jpg";
-import Navbar from "../assets/Items/navbar";
+import bg from "../../assets/img/bg3.jpg";
+import Navbar from "../../assets/Items/navbar";
 import { FaChevronDown } from 'react-icons/fa'; // Import icon
 import { useNavigate } from "react-router-dom";
-import Back from '../assets/Items/ButtonBack';
 
 const PembayaranPage = () => {
   const [isZakatDropdownOpen, setIsZakatDropdownOpen] = useState(false);
@@ -41,23 +40,8 @@ const PembayaranPage = () => {
   return (
     <div className="min-h-screen bg-[#FFFDF1]" style={{ fontFamily: "'PT Serif', serif" }}> {/* Add font style here */}
       <Navbar />
-      {/* <div className="flex items-center justify-between p-5 absolute">
-
-<button
-onClick={handleBackClick} // Mengatur klik tombol untuk navigasi
-className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded-[4px] space-x-2"
-style={{
-  background:
-  "linear-gradient(to bottom, #456F47, #69895C, #A9B782)",
-  }}
-  >
-  <FiLogOut className="text-white" />
-            <span>Back</span>
-          </button>
-          </div> */}
 
       <main className="container mx-auto py-12 px-4">
-        <Back/>
         <section className="p-8 rounded-lg shadow-md mb-8" style={{
           backgroundImage: `url(${bg})`,
           backgroundSize: 'cover',

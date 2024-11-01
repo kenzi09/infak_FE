@@ -1,10 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import bg from "../assets/img/bg.png";
-import StatusBlmBayar from "../assets/Items/Status/StatusBlmBayar";
-import Menunggak from "../assets/Items/Status/Menunggak";
-import Navbar from "../assets/Items/navbar";
+import bg from "../../assets/img/bg.png";
+import StatusBlmBayar from "../../assets/Items/Status/StatusBlmBayar";
+import Menunggak from "../../assets/Items/Status/Menunggak";
+// import Navbar from "../../assets/Items/Navbar";
+import Navbar from "../../assets/Items/navbar";
 import { FiLogOut } from "react-icons/fi"; // Mengimpor icon logout
 
 function Tagihan() {
@@ -12,9 +13,9 @@ function Tagihan() {
   const navigate = useNavigate();
 
   const paymentItems = [
-    { id: 1, name: "Zakat Infaq dan Shadaqoh Bulan Juli 2024", amount: 50000 },
-    { id: 2, name: "Zakat Infaq dan Shadaqoh Bulan Agustus 2024", amount: 60000 },
-    { id: 3, name: "Zakat Infaq dan Shadaqoh Bulan September 2024", amount: 70000 },
+    { id: 1, bulan: "Juli", amount: 50000 },
+    { id: 2, bulan: "Agustus", amount: 60000 },
+    { id: 3, bulan: "September", amount: 70000 },
   ];
 
   const handleSelectItem = (itemId) => {
@@ -33,51 +34,7 @@ function Tagihan() {
     navigate("/user/dashboard"); // Kembali ke halaman Dashboard2
   };
   return (
-    <div className="w-full bg-[#FFFDF1] min-h-screen">
-      <Navbar/>
-      <div className="flex items-center justify-between p-5 absolute">
-
-          <button
-            onClick={handleBackClick} // Mengatur klik tombol untuk navigasi
-            className="flex items-center bg-[#A9B782] text-white py-2 px-4 rounded-[4px] space-x-2"
-            style={{
-              background:
-                "linear-gradient(to bottom, #456F47, #69895C, #A9B782)",
-            }}
-          >
-            <FiLogOut className="text-white" /> {/* Icon logout */}
-            <span>Back</span>
-          </button>
-        </div>
-    <div className=" px-28 py-12 ">
-
-      <h2 className="text-center text-2xl font-bold pt-3">
-        Total Tagihan Zakat Infaq & Shadaqoh
-      </h2>
-
-      <div className="flex flex-col space-y-2 p-12 pt-10">
-        <div className="text-left space-y-1">
-          <div className="flex">
-            <p className="font-pt-serrif font-semibold w-60">NIS</p>
-            <p className="font-pt-serrif font-semibold flex-1">: 12209077</p>
-          </div>
-          <div className="flex">
-            <p className="font-pt-serrif font-semibold w-60">Nama</p>
-            <p className="font-pt-serrif font-semibold flex-1">
-              : Kenzi Badrika
-            </p>
-          </div>
-          <div className="flex">
-            <p className="font-pt-serrif font-semibold w-60">Rombel</p>
-            <p className="font-pt-serrif font-semibold flex-1">: PPLG XII-1</p>
-          </div>
-          <div className="flex">
-            <p className="font-pt-serrif font-semibold w-60">Rayon</p>
-            <p className="font-pt-serrif font-semibold flex-1">: Cibedug 3</p>
-          </div>
-          
-        </div>
-      </div>
+    <div className="w-full bg-[#FFFDF1]">
 
       <div className="flex justify-end">
         <button
@@ -138,7 +95,7 @@ function Tagihan() {
                 </div>
                 <Menunggak />
               </div>
-              <p className="font-bold text-black text-sm">{item.name}</p>
+              <p className="font-bold text-black text-sm">Zakat Infaq dan Shadaqoh Bulan {item.bulan} 2024</p>
               <p className="text-gray-700 text-xs">
                 No. Rekening: <span className="font-bold">1078742696</span>
               </p>
@@ -160,7 +117,6 @@ function Tagihan() {
           </div>
         </div>
       ))}
-    </div>
     </div>
   );
 }

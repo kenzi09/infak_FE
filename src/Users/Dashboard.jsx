@@ -35,6 +35,7 @@ function Dashboard() {
           const data = response.data?.data || {};
           setUserData(data);
           console.log(data)
+          
           localStorage.setItem("userData", JSON.stringify(data));
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -72,7 +73,7 @@ function Dashboard() {
             <span className="font-bold text-gray-800">{userData.name}</span>
           </p>
           <p className="text-[18px] text-gray-500">
-            {userData.rayon} | {userData.nama_rombel} | {userData.nis}
+            {userData.rayon_id.rayon} | {userData.nama_rombel} | {userData.nis}
           </p>
         </div>
         <main className="flex-grow flex flex-col items-center justify-center">

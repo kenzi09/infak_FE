@@ -3,9 +3,9 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'; // Import necessary components
 import Dashboard from './Users/Dashboard';
 import Login from './Login/login';
-import Pembayaran from './Pembayaran/pembayaran';
-import Pembayaran2 from './Pembayaran2/Tagihan';
-import Pembayaran3 from './Pembayaran2/Metode';
+// import Pembayaran from './Pembayaran/pembayaran';
+import Pembayaran from './Pembayaran/Pembayaran';
+import Pembayaran3 from './Pembayaran/Bayar/Metode';
 import Nunggak from './assets/Items/Menunggak';
 import Sidebar from './PS/Sidebar/index'; // Sidebar
 import TabelSiswa from './PS/Siswa'; // Halaman Siswa
@@ -21,7 +21,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/User/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/User/riwayat" element={<Pembayaran />} />
-        <Route path="/User/pembayaran" element={<Pembayaran2 />} />
+        <Route path="/User/pembayaran" element={<Pembayaran />} />
         <Route path="/User/pembayaran2" element={<Pembayaran3 />} />
         <Route path="/User/nunggak" element={<Nunggak />} />
         <Route path="/PS" element={<Sidebar />}>
