@@ -59,8 +59,15 @@ function Navbar() {
         }
     };
 
+    const isDashboard = location.pathname === "/User/dashboard";
+    const navbarClass = isDashboard
+        ? "sticky top-0 "
+        : "fixed top-0  w-full"
+    
+
     return (
-        <header className="header flex justify-between items-center px-4 shadow-lg">
+        // <header className="header flex justify-between items-center px-4 shadow-lg">
+        <header className={`header flex justify-between items-center px-4 shadow-lg ${navbarClass}`} style={{ zIndex: 10 }}>
             <div className="flex items-center">
                 {location.pathname === "/User/dashboard" ? (
                     <>
@@ -69,10 +76,8 @@ function Navbar() {
                     </>
                 ) : (
                     <button onClick={() => navigate(-1)} className="text-white flex items-center justify-center text-[15px]">
-                        <FiHome className="text-[22px]"/>  <pre></pre>
-                        <p className="pt-1">
-                        kembali
-                        </p>
+                        <FiHome className="text-[22px]" />
+                        <span className="ml-2 font-pt">| {location.state?.from || "Halaman Sebelumnya"}</span>
                     </button>
                 )}
             </div>
@@ -84,7 +89,7 @@ function Navbar() {
                     className="flex items-center space-x-2 cursor-pointer"
                     onClick={toggleDropdown}
                 >
-                    <div className="user-info text-black-800">{userName}</div>
+                    <div className="user-info text-black-800 font-pt">{userName}</div>
                     <FaChevronDown className="text-black-600" />
                 </div>
                 {isOpen && (
