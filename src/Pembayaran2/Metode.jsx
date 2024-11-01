@@ -57,12 +57,8 @@ style={{
           </div> */}
 
       <main className="container mx-auto py-12 px-4">
-<<<<<<< HEAD:src/Pembayaran2/Metode.jsx
         <Back/>
         <section className="p-8 rounded-lg shadow-md mb-8" style={{
-=======
-        <section className="p-8 rounded-2xl shadow-md mb-8" style={{
->>>>>>> a288fcf0502f3f0d367af7934da61b6bc1bda750:src/Pembayaran3/Metode.jsx
           backgroundImage: `url(${bg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
