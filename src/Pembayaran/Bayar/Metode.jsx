@@ -1,12 +1,12 @@
+
 import React, { useState, useRef } from 'react';
 import { FaChevronDown } from 'react-icons/fa'; // Import ikon dropdown
 import { FaShoppingCart } from 'react-icons/fa'; // Import ikon keranjang
-import bg from "../assets/img/bg3.jpg";
-import QR from "../assets/img/QR.png"; // Path logo QRIS
-import BNI from "../assets/img/BNI.jpg"; // Path logo Bank BNI
-import Navbar from "../assets/Items/navbar";
+import bg from "../../assets/img/bg3.jpg";
+import QR from "../../assets/img/QR.png"; // Path logo QRIS
+import BNI from "../../assets/img/BNI.jpg"; // Path logo Bank BNI
+import Navbar from "../../assets/Items/navbar";
 import { useNavigate } from "react-router-dom";
-import Back from '../assets/Items/ButtonBack';
 
 const PembayaranPage = () => {
   const [selectedZakat, setSelectedZakat] = useState('Pilih Jenis Zakat');
@@ -51,9 +51,9 @@ const PembayaranPage = () => {
   return (
     <div className="min-h-screen bg-[#FFFDF1]" style={{ fontFamily: "'PT Serif', serif" }}>
       <Navbar />
+
       <main className="container mx-auto py-12 px-4">
-        <Back />
-        <section className="p-8 rounded-2xl shadow-lg mb-8" style={{
+        <section className="p-8 rounded-lg shadow-md mb-8" style={{
           backgroundImage: `url(${bg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',

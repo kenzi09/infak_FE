@@ -4,11 +4,6 @@ import './index.css';
 import axios from "axios";
 
 const TabelSiswa = () => {
-  // const [approvals, setApprovals] = useState([
-  //   { id: 1, name: 'John Doe', nis: 12209077, approved: false },
-  //   { id: 2, name: 'Jane Smith', nis: 12209078, approved: false },
-  //   { id: 3, name: 'Mark Miller', nis: 12209079, approved: false },
-  // ]);
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
