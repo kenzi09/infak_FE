@@ -1,36 +1,91 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'; // Import necessary components
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './Users/Dashboard';
 import Login from './Login/login';
-// import Pembayaran from './Pembayaran/pembayaran';
 import Pembayaran from './Pembayaran/Pembayaran';
 import Pembayaran3 from './Pembayaran/Bayar/Metode';
 import Nunggak from './assets/Items/Menunggak';
-import Sidebar from './PS/Sidebar/index'; // Sidebar
-import TabelSiswa from './PS/Siswa'; // Halaman Siswa
-import View from './PS/View'; // Halaman View
+import Sidebar from './PS/Sidebar/index';
+import TabelSiswa from './PS/Siswa';
+import View from './PS/View';
 import Home from './PS/Home';
 import SidebarAdmin from './Admin/Sidebar';
+import ProtectedRoute from './ProtectedRoute'; // Import ProtectedRoute
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/User/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/User/riwayat" element={<Pembayaran />} />
-        <Route path="/User/pembayaran" element={<Pembayaran />} />
-        <Route path="/User/pembayaran2" element={<Pembayaran3 />} />
-        <Route path="/User/nunggak" element={<Nunggak />} />
-        <Route path="/PS" element={<Sidebar />}>
-          <Route path='/PS/' element={<Home />} /> {/* Dashboard tampil di halaman utama */}
-          <Route path="/PS/view" element={<View />} /> {/* Rute ke halaman View */}
-          <Route path="/PS/pembayaran" element={<TabelSiswa />} /> {/* Rute ke halaman Siswa */}
+        
+        {/* Route untuk siswa */}
+        <Route
+          path="/User/dashboard"
+          element={
+            <ProtectedRoute requiredRole="Siswa">
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/User/riwayat"
+          element={
+            <ProtectedRoute requiredRole="Siswa">
+              <Pembayaran />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/User/pembayaran"
+          element={
+            <ProtectedRoute requiredRole="Siswa">
+              <Pembayaran />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/User/pembayaran2"
+          element={
+            <ProtectedRoute requiredRole="Siswa">
+              <Pembayaran3 />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/User/nunggak"
+          element={
+            <ProtectedRoute requiredRole="Siswa">
+              <Nunggak />
+            </ProtectedRoute>
+          }
+        />
+        
+        {/* Route untuk PS */}
+        <Route
+          path="/PS"
+          element={
+            <ProtectedRoute requiredRole="PS">
+              <Sidebar />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="/PS/" element={<Home />} />
+          <Route path="/PS/view" element={<View />} />
+          <Route path="/PS/pembayaran" element={<TabelSiswa />} />
         </Route>
-          <Route path="/Admin/" element={<SidebarAdmin/>} />
+
+        {/* Route untuk Admin */}
+        <Route
+          path="/Admin/"
+          element={
+            <ProtectedRoute requiredRole="Admin">
+              <SidebarAdmin />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 );
