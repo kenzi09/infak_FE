@@ -17,7 +17,7 @@ function Pembayaran() {
   const location = useLocation(); // Mendapatkan path saat ini
 
   useEffect(() => {
-    const storedUserData = localStorage.getItem("userData");
+    const storedUserData = sessionStorage.getItem("userData");
     if (storedUserData) {
       const { name, nis, rayon_id, nama_rombel } = JSON.parse(storedUserData);
       setUserName(name);
