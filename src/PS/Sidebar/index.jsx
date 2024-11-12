@@ -1,17 +1,24 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom"; // Tambahkan useNavigate
 import Logo from "../../assets/icons/Logo.png";
 import { BiHomeAlt, BiGridAlt, BiLogOut } from "react-icons/bi";
 import '../index.css';
 
 export default function Sidebar() {
   const [activeMenu, setActiveMenu] = useState("Dashboard");
+  const navigate = useNavigate(); // Inisialisasi navigate
 
   const menu = [
     { name: "Dashboard", path: "/PS", icon: <BiHomeAlt /> }, // Menu Dashboard
     { name: "Pembayaran", path: "/PS/pembayaran", icon: <BiGridAlt /> }, // Menu Pembayaran
   ];
+
+  // Fungsi logout
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Hapus token dari localStorage
+    navigate("/"); // Arahkan ke halaman login
+  };
 
   return (
     <div className="flex bg-white">
@@ -37,7 +44,7 @@ export default function Sidebar() {
                     }`}
                   >
                     <div className="mr-3">{val.icon}</div>
-                    <div>{val.name}</div> {/* Routing ke halaman */}
+                    <div>{val.name}</div>
                   </li>
                 </Link>
               ))}
@@ -45,20 +52,21 @@ export default function Sidebar() {
           </div>
         </div>
       </div>
-      
+
       <div className="flex-1 p-8 bg-white">
         {/* Navbar */}
         <div className="flex justify-end items-center pb-4 border-b border-gray-200">
-          <button className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors duration-200">
+          <button
+            onClick={handleLogout} // Tambahkan onClick untuk logout
+            className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors duration-200"
+          >
             <BiLogOut className="mr-2 text-lg" />
             Logout
           </button>
         </div>
-        
+
         <Outlet /> {/* Konten dinamis akan ditampilkan di sini */}
       </div>
     </div>
   );
 }
-
-
