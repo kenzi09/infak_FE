@@ -13,7 +13,7 @@ function Navbar() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const storedUserData = localStorage.getItem("userData");
+        const storedUserData = sessionStorage.getItem("userData");
         if (storedUserData) {
             const { name } = JSON.parse(storedUserData);
             setUserName(name);
@@ -43,7 +43,7 @@ function Navbar() {
     }, [isOpen]);
 
     const handleLogout = async () => {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
 
         try {
             await axios.post("http://127.0.0.1:8000/api/logout", {}, {
@@ -51,8 +51,8 @@ function Navbar() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            localStorage.removeItem("token");
-            localStorage.removeItem("userData");
+            sessionStorage.removeItem("token");
+            sessionStorage.removeItem("userData");
             window.location.href = "/";
         } catch (error) {
             console.error("Error during logout:", error);
@@ -75,10 +75,15 @@ function Navbar() {
                         <h5 className="ml-3 font-semibold font-poppins">SMK WIKRAMA BOGOR</h5>
                     </>
                 ) : (
-                    <button onClick={() => navigate(-1)} className="text-white flex items-center justify-center text-[15px]">
-                        <FiHome className="text-[22px]" />
-                        <span className="ml-2 font-pt">| {location.state?.from || "Halaman Sebelumnya"}</span>
-                    </button>
+                    <div className="flex items-center justify-center">
+                        <button onClick={() => navigate("/User/dashboard")} className="text-white text-[15px]">
+                            <FiHome className="text-[22px]" />
+                        </button>
+                        <div className="px-3">| </div>
+                        <button onClick={() => navigate(-1)} className="text-white text-[16px] mt-1">
+                            <span className="font-pt">{location.state?.from || "Halaman Sebelumnya"}</span>
+                        </button>
+                    </div>
                 )}
             </div>
             <div className="relative flex items-center space-x-2" ref={dropdownRef}>

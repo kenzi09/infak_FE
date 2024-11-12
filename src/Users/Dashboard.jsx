@@ -11,7 +11,7 @@ import "../loading.css";
 function Dashboard() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [userData, setUserData] = useState(() => {
-    const savedData = localStorage.getItem("userData");
+    const savedData = sessionStorage.getItem("userData");
     return savedData ? JSON.parse(savedData) : null;
   });
 
@@ -22,7 +22,8 @@ function Dashboard() {
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
+    console.log("token yang diterima", token);
 
     if (!userData && token) {  // Hanya fetch jika userData kosong dan ada token
       const fetchData = async () => {
@@ -36,7 +37,7 @@ function Dashboard() {
           setUserData(data);
           console.log(data)
           
-          localStorage.setItem("userData", JSON.stringify(data));
+          sessionStorage.setItem("userData", JSON.stringify(data));
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -48,7 +49,7 @@ function Dashboard() {
 
   if (!userData) {
     return (
-      <div className="max-h-screen bg-[#FFFDF1] ">
+      <div className="max-h-screen bg-[#FFFDF1]">
         <div className="p-4 absolute">
           <img src={wk} alt="Logo" className="logo-image w-12 h-12 " />
         </div>

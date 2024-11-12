@@ -21,8 +21,8 @@ function Login() {
         { email, password }
       );
 
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("role", response.data.data.role); // Simpan role ke localStorage
+      sessionStorage.setItem("token", response.data.token);
+      sessionStorage.setItem("role", response.data.data.role); // Simpan role ke sessionStorage
 
       const userRole = response.data.data.role;
       console.log("Role yang diterima:", userRole);
@@ -64,6 +64,11 @@ function Login() {
             }}
           ></div>
         </div>
+
+        <div
+          className="lg:hidden absolute inset-0 bg-cover bg-center h-screen"
+          style={{ backgroundImage: `url(${masjid})` }}
+        ></div>
 
         <div className="relative flex flex-col justify-center items-center lg:items-start w-full lg:max-w-7xl p-6 lg:p-16 h-screen">
           <div className="absolute top-6 right-6 flex items-center">
@@ -137,9 +142,9 @@ function Login() {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute inset-y-0 right-3 flex items-center text-gray-700 pt-7 pr-[2px]"
+                      className="absolute inset-y-0 right-3 flex items-center text-gray-700 pt-[22px] pr-[2px] lg:pt-7"
                     >
-                      {showPassword ? <FaEye className="w-[30px]"/> : <FaEyeSlash className="w-[30px]"/>}
+                      {showPassword ? <FaEye className="lg:w-[30px]"/> : <FaEyeSlash className="lg:w-[32px]"/>}
                     </button>
                   </div>
                   {error && (
