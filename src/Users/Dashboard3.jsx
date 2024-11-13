@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 // import wk3 from "../assets/img/wk3.jpg";
 import duha1 from "../assets/img/duha1.jpg";

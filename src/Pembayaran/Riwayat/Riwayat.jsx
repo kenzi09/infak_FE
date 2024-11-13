@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaCheckCircle, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
@@ -30,8 +30,70 @@ const paymentsData = [
       },
     ],
   },
-  // Add more years and data as needed
+  {
+    year: "TP 2023/2024",
+    data: [
+      {
+        month: "Januari",
+        amount: "Rp.50.000",
+        status: "Sudah Dibayar",
+        details: {
+          paymentDate: "12 Januari 2023",
+          bankInfo: "BNI VA 987654321",
+          notes: "Paid on time",
+        },
+      },
+      {
+        month: "Februari",
+        amount: "Rp.50.000",
+        status: "Sudah Dibayar",
+        details: {
+          paymentDate: "15 Februari 2023",
+          bankInfo: "BNI VA 987654321",
+          notes: "No issues",
+        },
+      },
+      {
+        month: "Maret",
+        amount: "Rp.50.000",
+        status: "Belum Dibayar",
+        details: {},
+      },
+    ],
+  },
+  {
+    year: "TP 2022/2023",
+    data: [
+      {
+        month: "Januari",
+        amount: "Rp.50.000",
+        status: "Sudah Dibayar",
+        details: {
+          paymentDate: "5 Januari 2022",
+          bankInfo: "BNI VA 123456789",
+          notes: "Paid in advance",
+        },
+      },
+      {
+        month: "Februari",
+        amount: "Rp.50.000",
+        status: "Sudah Dibayar",
+        details: {
+          paymentDate: "10 Februari 2022",
+          bankInfo: "BNI VA 123456789",
+          notes: "",
+        },
+      },
+      {
+        month: "Maret",
+        amount: "Rp.50.000",
+        status: "Belum Ditagihkan",
+        details: {},
+      },
+    ],
+  },
 ];
+
 
 function Riwayat() {
   const [dataBulan, setDataBulan] = useState([]);
