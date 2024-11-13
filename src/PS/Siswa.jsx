@@ -8,7 +8,7 @@ const TabelSiswa = () => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     const fetchData = async () => {
       try {
@@ -17,14 +17,18 @@ const TabelSiswa = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setUserData(response.data);
+        const data = response?.data || {};
+        setUserData(data);
+        console.log(data)
+          
+        sessionStorage.setItem("userData", JSON.stringify(data));
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [userData]);
 
   const navigate = useNavigate();
 
