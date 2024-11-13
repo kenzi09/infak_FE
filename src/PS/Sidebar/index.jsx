@@ -4,6 +4,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom"; // Tambahkan useNa
 import Logo from "../../assets/icons/Logo.png";
 import { BiHomeAlt, BiGridAlt, BiLogOut } from "react-icons/bi";
 import '../index.css';
+import axios from "axios";
 
 export default function Sidebar() {
   const [activeMenu, setActiveMenu] = useState("Dashboard");
@@ -14,11 +15,22 @@ export default function Sidebar() {
     { name: "Pembayaran", path: "/PS/pembayaran", icon: <BiGridAlt /> }, // Menu Pembayaran
   ];
 
-  // Fungsi logout
-  const handleLogout = () => {
-    localStorage.removeItem("token"); // Hapus token dari localStorage
-    navigate("/"); // Arahkan ke halaman login
-  };
+  const handleLogout = async () => {
+    const token = sessionStorage.getItem("token");
+
+    try {
+        await axios.post("http://127.0.0.1:8000/api/logout", {}, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("userData");
+        window.location.href = "/";
+    } catch (error) {
+        console.error("Error during logout:", error);
+    }
+};
 
   return (
     <div className="flex bg-white">
@@ -56,10 +68,9 @@ export default function Sidebar() {
       <div className="flex-1 p-8 bg-white">
         {/* Navbar */}
         <div className="flex justify-end items-center pb-4 border-b border-gray-200">
-          <button
-            onClick={handleLogout} // Tambahkan onClick untuk logout
-            className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors duration-200"
-          >
+
+          <button className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors duration-200"
+          onClick={handleLogout}>
             <BiLogOut className="mr-2 text-lg" />
             Logout
           </button>
