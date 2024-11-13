@@ -100,14 +100,14 @@ function Navbar() {
                 {isOpen && (
                     <div className="dropdown-menu absolute right-0 mt-2 bg-[#faf8ef] border border-gray-200 rounded-lg shadow-lg w-48">
                         <ul className="p-2">
-                            <li className="p-2 flex items-center hover:bg-gray-100 cursor-pointer">
+                            {/* <li className="p-2 flex items-center hover:bg-gray-100 cursor-pointer">
                                 <FaUserCircle className="mr-2" />
                                 Ganti Foto Profil
                             </li>
                             <li className="p-2 flex items-center hover:bg-gray-100 cursor-pointer">
                                 <FaKey className="mr-2" />
                                 Ganti Password
-                            </li>
+                            </li> */}
                             <li
                                 className="p-2 flex items-center hover:bg-gray-100 cursor-pointer"
                                 onClick={handleLogout}
