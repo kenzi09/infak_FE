@@ -15,16 +15,19 @@ function Dashboard() {
     return savedData ? JSON.parse(savedData) : null;
   });
 
+  
   useEffect(() => {
     setTimeout(() => {
       setIsLoaded(true);
     }, 500);
   }, []);
-
+  
+  
+  
   useEffect(() => {
     const token = sessionStorage.getItem("token");
     console.log("token yang diterima", token);
-
+    
     if (!userData && token) {  // Hanya fetch jika userData kosong dan ada token
       const fetchData = async () => {
         try {
@@ -42,7 +45,7 @@ function Dashboard() {
           console.error("Error fetching data:", error);
         }
       };
-
+      
       fetchData();
     }
   }, [userData]);
