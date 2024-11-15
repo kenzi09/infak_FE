@@ -5,20 +5,19 @@ import bg from "../../assets/img/bg3.jpg";
 import QR from "../../assets/img/QR.png";
 import BNI from "../../assets/img/BNI.jpg";
 import Navbar from "../../assets/Items/navbar";
-import { useLocation, useNavigate } from "react-router-dom"; // Import useLocation
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PembayaranPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const bayarRef = useRef(null);
 
-  // Ambil data bulan yang dipilih dari tagihan.jsx
   const selectedMonths = location.state?.selectedMonths || "Bulan belum dipilih";
 
-  // Variabel dan fungsi lainnya tetap
   const [selectedZakat, setSelectedZakat] = useState('Pilih Jenis Zakat');
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [isZakatOpen, setIsZakatOpen] = useState(false);
+  const [isQRCodeVisible, setIsQRCodeVisible] = useState(false); // State to toggle QR code visibility
 
   const zakatOptions = ['Infaq dan Shadaqoh', 'Zakat Mall'];
 
@@ -34,11 +33,12 @@ const PembayaranPage = () => {
     setIsZakatOpen(false);
   };
 
-  const downloadQRCode = () => {
-    const link = document.createElement("a");
-    link.href = QR;
-    link.download = "QRIS.png";
-    link.click();
+  const handleScanClick = () => {
+    setIsQRCodeVisible(true); // Show the QR code card
+  };
+
+  const handleCloseQRCode = () => {
+    setIsQRCodeVisible(false); // Close the QR code card
   };
 
   return (
@@ -91,26 +91,28 @@ const PembayaranPage = () => {
           backgroundPosition: 'center',
           backgroundColor: 'rgba(255, 255, 255, 0.5)', // Transparan
         }}>
-          <h3 className="text-xl font-semibold mb-6">Pilih Metode Pembayaran</h3>
+          <h3 className="text-xl font-semibold mb-6 text-gray-800">Pilih Metode Pembayaran</h3>
 
           {/* Pilihan Pembayaran */}
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div
-              className={`p-6 rounded-lg shadow-md cursor-pointer ${selectedPayment === 'QRIS' ? 'bg-[#A9B782]' : 'bg-transparent'}`}
+              className={`p-6 rounded-lg shadow-md cursor-pointer transition-all duration-200 ${selectedPayment === 'QRIS' ? 'bg-[#A9B782] text-white' : 'bg-transparent text-gray-800'}`}
               onClick={() => handlePaymentSelect('QRIS')}
             >
-              <div className="flex items-center space-x-4">
-                <img src={QR} alt="QRIS Logo" className="h-10 w-auto" />
-                <div>
+              <div className="flex flex-col items-center space-y-4">
+                <div className="w-28 h-28 bg-white rounded-full flex justify-center items-center">
+                  <img src={QR} alt="QRIS Logo" className="h-16 w-16 object-contain" />
+                </div>
+                <div className="text-center">
                   <p className="text-lg font-semibold">QRIS Scan</p>
                   {selectedPayment === 'QRIS' && (
                     <>
-                      <p className="text-gray-600 mt-2">Scan kode QR untuk pembayaran</p>
+                      <p className="text-gray-600 mt-2">Klik untuk scan kode QR</p>
                       <button
-                        onClick={downloadQRCode}
+                        onClick={handleScanClick}
                         className="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200"
                       >
-                        Unduh QR Code
+                        Scan
                       </button>
                     </>
                   )}
@@ -119,11 +121,11 @@ const PembayaranPage = () => {
             </div>
 
             <div
-              className={`p-6 rounded-lg shadow-md cursor-pointer ${selectedPayment === 'Bank BNI' ? 'bg-[#A9B782]' : 'bg-transparent'}`}
+              className={`p-6 rounded-lg shadow-md cursor-pointer transition-all duration-200 ${selectedPayment === 'Bank BNI' ? 'bg-[#A9B782] text-white' : 'bg-transparent text-gray-800'}`}
               onClick={() => handlePaymentSelect('Bank BNI')}
             >
               <div className="flex items-center space-x-4">
-                <img src={BNI} alt="Bank BNI Logo" className="h-10 w-auto" />
+                <img src={BNI} alt="Bank BNI Logo" className="h-12 w-auto" />
                 <div>
                   <p className="text-lg font-semibold">Bank BNI</p>
                   {selectedPayment === 'Bank BNI' && (
@@ -137,8 +139,28 @@ const PembayaranPage = () => {
             </div>
           </div>
 
-          {/* Tombol Bayar di dalam div Pilihan Pembayaran */}
-          <div className="text-center mt-6">
+          {/* Card QR when clicked */}
+          {isQRCodeVisible && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm mx-auto">
+      <p className="text-center text-lg font-semibold mb-4">QR Code Pembayaran</p>
+      <div className="flex justify-center items-center mb-4">
+        {/* Memperbesar ukuran QR Code */}
+        <img src={QR} alt="QR Code" className="h-80 w-80 object-contain" />
+      </div>
+      <button
+        onClick={handleCloseQRCode}
+        className="block w-full bg-red-500 text-white py-2 rounded-lg text-center hover:bg-red-600 transition-colors duration-200"
+      >
+        Tutup
+      </button>
+    </div>
+  </div>
+)}
+
+
+          {/* Tombol Bayar */}
+          <div className="text-center mt-8">
             <button
               className="flex items-center justify-center px-6 py-3 bg-[#A9B782] text-white font-semibold rounded-lg hover:bg-[#8DA06E] transition-colors duration-200"
             >

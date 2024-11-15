@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../assets/icons/Logo.png";
 import PP from "../../assets/icons/PP.png";
-import { BiHomeAlt, BiUser, BiListUl, BiChevronDown, BiChevronUp } from "react-icons/bi";
+import { BiHomeAlt, BiListUl, BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { PiWallet } from "react-icons/pi";
 import Home from "../Home";
 import Dashboard from "../Home";
@@ -19,7 +19,6 @@ export default function SidebarAdmin() {
     { name: "Dashboard", icon: <BiHomeAlt /> },
     { name: "Pembayaran", icon: <BiListUl /> },
     { name: "Data Siswa", icon: <BiListUl /> },
-    { name: "Contacts", icon: <BiUser /> },
     { name: "Keuangan", icon: <PiWallet /> },
   ];
 
@@ -33,8 +32,6 @@ export default function SidebarAdmin() {
         return <Pembayaran />;
       case "Data Siswa":
         return <DataPembayaran />;
-      case "Contacts":
-        return <div>Contacts Content</div>;
       case "Keuangan":
         return <Keuangan />;
       default:

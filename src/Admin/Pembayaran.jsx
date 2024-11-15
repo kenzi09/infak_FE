@@ -5,25 +5,22 @@ const ApprovalTable = () => {
   const [approvals, setApprovals] = useState([
     {
       id: 1,
-      nis: 64912396,
-      name: "John Doe",
+      nis: "12208904", nama: "Anton Witjaksono",
       approved: false,
       details: "Pembayaran SPP bulan September",
     },
     {
       id: 2,
-      nis: 12040914,
-      name: "Jane Smith",
+      nis: "12208898", nama: "Bahtiar Abdul Aziz",
       approved: false,
       details: "Pembayaran SPP bulan Oktober",
     },
     {
       id: 3,
-      nis: 98659382,
-      name: "Mark Miller",
+      nis: "12208121", nama: "Kenzi Badrika",
       approved: false,
       details: "Pembayaran SPP bulan November",
-    },
+    },    
   ]);
 
   const [selectedApproval, setSelectedApproval] = useState(null);
@@ -76,7 +73,7 @@ const ApprovalTable = () => {
           {approvals.map((approval, index) => (
             <tr key={approval.id} className="hover:bg-gray-50 transition">
               <td className="px-6 py-4 border-b">{index + 1}</td>
-              <td className="px-6 py-4 border-b">{approval.name}</td>
+              <td className="px-6 py-4 border-b">{approval.nama}</td>
               <td className="px-6 py-4 border-b">{approval.nis}</td>
               <td className="px-6 py-4 border-b text-center">
                 <button

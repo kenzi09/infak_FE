@@ -33,7 +33,6 @@ const FinancialReport = () => {
             <th className="border border-gray-200 p-2">Hari</th>
             <th className="border border-gray-200 p-2">Pendapatan</th>
             <th className="border border-gray-200 p-2">Pengeluaran</th>
-            <th className="border border-gray-200 p-2">Deskripsi</th>
           </tr>
         </thead>
         <tbody>
@@ -42,7 +41,6 @@ const FinancialReport = () => {
               <td className="border border-gray-200 p-2">{item.day}</td>
               <td className="border border-gray-200 p-2">{item.income}</td>
               <td className="border border-gray-200 p-2">{item.expense}</td>
-              <td className="border border-gray-200 p-2">{item.description}</td>
             </tr>
           ))}
         </tbody>
@@ -77,7 +75,6 @@ const FinancialReport = () => {
             <th className="border border-gray-200 p-2">Tahun</th>
             <th className="border border-gray-200 p-2">Pendapatan</th>
             <th className="border border-gray-200 p-2">Pengeluaran</th>
-            <th className="border border-gray-200 p-2">Deskripsi</th>
           </tr>
         </thead>
         <tbody>
@@ -86,7 +83,6 @@ const FinancialReport = () => {
               <td className="border border-gray-200 p-2">{item.year}</td>
               <td className="border border-gray-200 p-2">{item.income}</td>
               <td className="border border-gray-200 p-2">{item.expense}</td>
-              <td className="border border-gray-200 p-2">{item.description}</td>
             </tr>
           ))}
         </tbody>
