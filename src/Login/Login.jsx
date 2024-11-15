@@ -8,20 +8,19 @@ import logoWikrama from "../assets/img/logoWikrama.png";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false); // Tambahkan state untuk 'Ingat Saya'
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Ambil data email dan password dari localStorage saat komponen pertama kali dimuat
     const rememberedEmail = localStorage.getItem("rememberedEmail");
     const rememberedPassword = localStorage.getItem("rememberedPassword");
 
     if (rememberedEmail && rememberedPassword) {
       setEmail(rememberedEmail);
       setPassword(rememberedPassword);
-      setRememberMe(true); // Set checkbox 'Ingat Saya' aktif jika data tersedia
+      setRememberMe(true);
     }
   }, []);
 
@@ -34,29 +33,33 @@ function Login() {
         password,
       });
 
-      sessionStorage.setItem("token", response.data.token);
-      sessionStorage.setItem("role", response.data.data.role);
+      // Cek respons token
+      console.log(response.data);
 
-      if (rememberMe) {
-        // Simpan email dan password di localStorage jika 'Ingat Saya' dipilih
-        localStorage.setItem("rememberedEmail", email);
-        localStorage.setItem("rememberedPassword", password);
+      if (response.data.token) {
+        sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("role", response.data.data.role);
+
+        if (rememberMe) {
+          localStorage.setItem("rememberedEmail", email);
+          localStorage.setItem("rememberedPassword", password);
+        } else {
+          localStorage.removeItem("rememberedEmail");
+          localStorage.removeItem("rememberedPassword");
+        }
+
+        const userRole = response.data.data.role;
+        if (userRole === "Admin") {
+          navigate("/Admin/");
+        } else if (userRole === "Siswa") {
+          navigate("/User/dashboard");
+        } else if (userRole === "PS") {
+          navigate("/PS/");
+        } else {
+          setError("Role tidak dikenali.");
+        }
       } else {
-        // Hapus data dari localStorage jika 'Ingat Saya' tidak dipilih
-        localStorage.removeItem("rememberedEmail");
-        localStorage.removeItem("rememberedPassword");
-      }
-
-      const userRole = response.data.data.role;
-
-      if (userRole === "Admin") {
-        navigate("/Admin/");
-      } else if (userRole === "Siswa") {
-        navigate("/User/dashboard");
-      } else if (userRole === "PS") {
-        navigate("/PS/");
-      } else {
-        setError("Role tidak dikenali.");
+        setError("Login gagal: token tidak diterima.");
       }
     } catch (err) {
       console.error(err);
