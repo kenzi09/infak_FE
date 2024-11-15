@@ -1,5 +1,5 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";  // Import useNavigate from react-router-dom
 import Logo from "../../assets/icons/Logo.png";
 import PP from "../../assets/icons/PP.png";
 import { BiHomeAlt, BiListUl, BiChevronDown, BiChevronUp } from "react-icons/bi";
@@ -10,7 +10,8 @@ import DataPembayaran from "../DataPembayaran";
 import Keuangan from "../Keuangan";
 
 export default function SidebarAdmin() {
-  const [activeMenu, setActiveMenu] = useState("Dashboard"); // Set initial state to "Dashboard"
+  const navigate = useNavigate();  // Initialize useNavigate
+  const [activeMenu, setActiveMenu] = useState("Dashboard");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -23,7 +24,7 @@ export default function SidebarAdmin() {
 
   const renderContent = () => {
     switch (activeMenu) {
-      case "Dashboard": // Make sure "Dashboard" is matched here
+      case "Dashboard":
         return <Dashboard />;
       case "Pembayaran":
         return <Pembayaran />;
@@ -49,11 +50,15 @@ export default function SidebarAdmin() {
     };
   }, []);
 
-  // Function to get current date in format 'DD Month YYYY'
   const getFormattedDate = () => {
     const today = new Date();
-    const options = { day: 'numeric', month: 'long', year: 'numeric' };
-    return today.toLocaleDateString('id-ID', options);
+    const options = { day: "numeric", month: "long", year: "numeric" };
+    return today.toLocaleDateString("id-ID", options);
+  };
+
+  const handleLogout = () => {
+    // Here you can clear user session data if needed
+    navigate("/login"); // Navigate to the login page
   };
 
   return (
@@ -67,13 +72,13 @@ export default function SidebarAdmin() {
         <div className="flex items-center">
           {/* Tanggal */}
           <div className="mr-8 text-gray-600 font-semibold">{getFormattedDate()}</div>
-          
+
           {/* Ikon Dropdown */}
           <div className="flex items-center mr-2 cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
             {isDropdownOpen ? (
-              <BiChevronUp className="text-gray-600 w-5 h-5" /> // Ikon Panah ke Atas jika dropdown terbuka
+              <BiChevronUp className="text-gray-600 w-5 h-5" />
             ) : (
-              <BiChevronDown className="text-gray-600 w-5 h-5" /> // Ikon Panah ke Bawah jika dropdown tertutup
+              <BiChevronDown className="text-gray-600 w-5 h-5" />
             )}
           </div>
           <div className="relative" ref={dropdownRef}>
@@ -95,7 +100,10 @@ export default function SidebarAdmin() {
                 </div>
                 <div className="border-t border-gray-200"></div>
                 <div className="flex flex-col p-4">
-                  <button className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600">
+                  <button
+                    className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600"
+                    onClick={handleLogout} // Trigger handleLogout on button click
+                  >
                     Logout
                   </button>
                 </div>
@@ -128,9 +136,7 @@ export default function SidebarAdmin() {
         </div>
 
         {/* Main Content Area */}
-        <div className="flex-1 p-8 bg-white">
-          {renderContent()}
-        </div>
+        <div className="flex-1 p-8 bg-white">{renderContent()}</div>
       </div>
     </div>
   );
