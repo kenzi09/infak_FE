@@ -4,14 +4,13 @@ import Logo from "../../assets/icons/Logo.png";
 import PP from "../../assets/icons/PP.png";
 import { BiHomeAlt, BiListUl, BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { PiWallet } from "react-icons/pi";
-import Home from "../Home";
-import Dashboard from "../Home";
+import Dashboard from "../Home"; // Make sure this is correctly importing the Dashboard component
 import Pembayaran from "../Pembayaran";
 import DataPembayaran from "../DataPembayaran";
 import Keuangan from "../Keuangan";
 
 export default function SidebarAdmin() {
-  const [activeMenu, setActiveMenu] = useState("Home");
+  const [activeMenu, setActiveMenu] = useState("Dashboard"); // Set initial state to "Dashboard"
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -24,9 +23,7 @@ export default function SidebarAdmin() {
 
   const renderContent = () => {
     switch (activeMenu) {
-      case "Home":
-        return <Home />;
-      case "Dashboard":
+      case "Dashboard": // Make sure "Dashboard" is matched here
         return <Dashboard />;
       case "Pembayaran":
         return <Pembayaran />;
