@@ -3,13 +3,13 @@ import React from 'react';
 
 const financialData = {
   weekly: [
-    { day: 'Senin', income: 1000, expense: 500, description: 'Penjualan produk A' },
-    { day: 'Selasa', income: 1200, expense: 700, description: 'Penjualan produk B' },
-    { day: 'Rabu', income: 800, expense: 300, description: 'Penjualan produk C' },
-    { day: 'Kamis', income: 1500, expense: 600, description: 'Penjualan produk D' },
-    { day: 'Jumat', income: 2000, expense: 900, description: 'Penjualan produk E' },
-    { day: 'Sabtu', income: 1800, expense: 400, description: 'Penjualan produk F' },
-    { day: 'Minggu', income: 1600, expense: 500, description: 'Penjualan produk G' },
+    { day: 'Senin', income: 1000},
+    { day: 'Selasa', income: 1200},
+    { day: 'Rabu', income: 800},
+    { day: 'Kamis', income: 1500},
+    { day: 'Jumat', income: 2000},
+    { day: 'Sabtu', income: 1800},
+    { day: 'Minggu', income: 1600},
   ],
   monthly: [
     { month: 'Januari', income: 7000, expense: 2500, description: 'Total pengeluaran untuk gaji dan bahan baku' },
@@ -32,8 +32,6 @@ const FinancialReport = () => {
           <tr className="bg-gray-100">
             <th className="border border-gray-200 p-2">Hari</th>
             <th className="border border-gray-200 p-2">Pendapatan</th>
-            <th className="border border-gray-200 p-2">Pengeluaran</th>
-            <th className="border border-gray-200 p-2">Deskripsi</th>
           </tr>
         </thead>
         <tbody>
@@ -41,8 +39,6 @@ const FinancialReport = () => {
             <tr key={index} className="border-b border-gray-200">
               <td className="border border-gray-200 p-2">{item.day}</td>
               <td className="border border-gray-200 p-2">{item.income}</td>
-              <td className="border border-gray-200 p-2">{item.expense}</td>
-              <td className="border border-gray-200 p-2">{item.description}</td>
             </tr>
           ))}
         </tbody>
@@ -77,7 +73,6 @@ const FinancialReport = () => {
             <th className="border border-gray-200 p-2">Tahun</th>
             <th className="border border-gray-200 p-2">Pendapatan</th>
             <th className="border border-gray-200 p-2">Pengeluaran</th>
-            <th className="border border-gray-200 p-2">Deskripsi</th>
           </tr>
         </thead>
         <tbody>
@@ -86,7 +81,6 @@ const FinancialReport = () => {
               <td className="border border-gray-200 p-2">{item.year}</td>
               <td className="border border-gray-200 p-2">{item.income}</td>
               <td className="border border-gray-200 p-2">{item.expense}</td>
-              <td className="border border-gray-200 p-2">{item.description}</td>
             </tr>
           ))}
         </tbody>
