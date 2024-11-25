@@ -1,24 +1,70 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; 
 
 const Table = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedMonths, setSelectedMonths] = useState({});
-  const [searchTerm, setSearchTerm] = useState(""); // State for search term
-  const [selectedDate, setSelectedDate] = useState(""); // State for selected date
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const [selectedDate, setSelectedDate] = useState(""); 
+  const [data, setData] = useState([]); 
+  const [error, setError] = useState(null); 
+  const [selectedDropdown, setSelectedDropdown] = useState(""); 
+  const [rayons, setRayons] = useState([]); 
 
-  const data = [
-    { nis: "12208904", nama: "Anton Witjaksono", rayon: "Rayon Cisarua 6", rombel: "PPLG XII-1", tanggal: "2024-09-10" },
-    { nis: "12208898", nama: "Bahtiar Abdul Aziz", rayon: "Rayon Cicurug 4", rombel: "PPLG XII-1", tanggal: "2024-09-11" },
-    { nis: "12208121", nama: "Kenzi Badrika", rayon: "Rayon Cibedug 3", rombel: "PPLG XII-1", tanggal: "2024-09-9" },
-    // Tambahkan lebih banyak data di sini
-  ];
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-  const months = [
-    "Juli", "Januari", "Agustus", "Februari", "September", "Maret", 
-    "Oktober", "April", "November", "Mei", "Desember", "Juni"
-  ];
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/siswa", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+        });
+        console.log("Respon API:", response.data?.data || []);
+        setData(response.data?.data || []);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setError("Error fetching data");
+      }
+    };
+
+    const fetchRayons = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/rayon");
+        console.log("Rayons Response:", response.data); 
+
+        const rayonData = Array.isArray(response.data) 
+          ? response.data.map(item => item.rayon) 
+          : response.data.data.map(item => item.rayon);
+
+        setRayons(rayonData);
+      } catch (error) {
+        console.error("Error fetching rayons:", error);
+        setError("Error fetching rayons");
+      }
+    };
+
+    fetchData();
+    fetchRayons();
+  }, []); 
+
+  const searchStudents = async (searchTerm) => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/search/siswa", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        params: { key: searchTerm },
+      });
+      setData(response.data); 
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+      setError("Error fetching search results");
+    }
+  };
 
   const handleDetailClick = (item) => {
     setSelectedItem(item);
@@ -37,28 +83,57 @@ const Table = () => {
     }));
   };
 
-  // Filter the data based on search term and selected date
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    
+    if (value) {
+      searchStudents(value);
+    } else {
+      fetchData(); 
+    }
+  };
+
+  const handleDropdownChange = (e) => {
+    setSelectedDropdown(e.target.value);
+    console.log("Selected Rayon:", e.target.value);  // Debugging selected rayon
+  };
+
+  // Filter data based on search term, selected rayon, and date
   const filteredData = data.filter((item) => {
-    const matchesSearchTerm =
-      item.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.nis.includes(searchTerm);
     const matchesDate = selectedDate ? item.tanggal === selectedDate : true;
-    return matchesSearchTerm && matchesDate;
+    const matchesRayon = selectedDropdown ? item.rayon_id.rayon === selectedDropdown : true;
+    return matchesDate && matchesRayon;
   });
 
   return (
     <div className="p-6 min-h-screen">
       <h1 className="text-4xl font-bold mb-8 text-gray-800">Data Siswa</h1>
 
-      {/* Search and Date Filters */}
+      {error && <div className="text-red-500 mb-4">{error}</div>}
+
       <div className="mb-4 flex justify-between">
         <input
           type="text"
-          className="border px-4 py-2 rounded-lg w-1/2"
+          className="border px-4 py-2 rounded-lg w-1/3"
           placeholder="Cari Nama atau NIS"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleSearchChange}
         />
+        <select
+          className="border px-4 py-2 rounded-lg w-1/4 ml-4"
+          value={selectedDropdown}
+          onChange={handleDropdownChange}  // Gunakan event handler
+        >
+          <option value="">Pilih Rayon</option>
+          {rayons.length > 0 ? (
+            rayons.map((rayon, index) => (
+              <option key={index} value={rayon}>{rayon}</option>
+            ))
+          ) : (
+            <option value="">Loading...</option>  // Tampilkan "Loading" jika data belum ada
+          )}
+        </select>
         <input
           type="date"
           className="border px-4 py-2 rounded-lg"
@@ -81,10 +156,10 @@ const Table = () => {
         <tbody>
           {filteredData.map((item, index) => (
             <tr key={index} className="hover:bg-gray-50 transition">
-              <td className="px-6 py-4 border-b">{item.nama}</td>
+              <td className="px-6 py-4 border-b">{item.name}</td>
               <td className="px-6 py-4 border-b">{item.nis}</td>
               <td className="px-6 py-4 border-b">{item.rayon}</td>
-              <td className="px-6 py-4 border-b">{item.rombel}</td>
+              <td className="px-6 py-4 border-b">{item.nama_rombel}</td>
               <td className="px-6 py-4 border-b">{item.tanggal}</td>
               <td className="px-6 py-4 border-b">
                 <button
@@ -98,108 +173,6 @@ const Table = () => {
           ))}
         </tbody>
       </table>
-
-      {/* Popup Modal */}
-      {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg p-6 shadow-lg w-[600px]">
-            <h2 className="text-lg font-bold mb-4">Detail Siswa</h2>
-            {selectedItem && (
-              <div className="grid grid-cols-2 gap-x-12 mb-4">
-                {/* Left Column: Nama and NIS */}
-                <div>
-                  <div className="flex">
-                    <p className="w-20"><strong>Nama</strong></p>
-                    <p>:</p>
-                    <p className="ml-1">{selectedItem.nama}</p>
-                  </div>
-                  <div className="flex mt-2">
-                    <p className="w-20"><strong>NIS</strong></p>
-                    <p>:</p>
-                    <p className="ml-1">{selectedItem.nis}</p>
-                  </div>
-                </div>
-
-                {/* Right Column: Rayon and Rombel */}
-                <div>
-                  <div className="flex">
-                    <p className="w-20"><strong>Rayon</strong></p>
-                    <p>:</p>
-                    <p className="ml-1">{selectedItem.rayon}</p>
-                  </div>
-                  <div className="flex mt-2">
-                    <p className="w-20"><strong>Rombel</strong></p>
-                    <p>:</p>
-                    <p className="ml-1">{selectedItem.rombel}</p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <h3 className="mt-4 font-bold">Pilih Bulan:</h3>
-            <table className="min-w-full bg-gray-100 border border-gray-300 rounded-lg mt-2">
-              <thead>
-                <tr className="bg-gray-200 text-gray-700">
-                  <th className="py-2 px-4 border-b text-center">Semester 1</th>
-                  <th className="py-2 px-4 border-b text-center">Pilih</th>
-                  <th className="py-2 px-4 border-b text-center">Semester 2</th>
-                  <th className="py-2 px-4 border-b text-center">Pilih</th>
-                </tr>
-              </thead>
-              <tbody>
-                {months.map((month, index) => {
-                  if (index % 2 === 0) {
-                    return (
-                      <tr key={month}>
-                        <td className="py-2 px-4 border-b text-center">{month}</td>
-                        <td className="py-2 px-4 border-b text-center">
-                          <input
-                            type="checkbox"
-                            checked={!!selectedMonths[month]}
-                            onChange={() => handleCheckboxChange(month)}
-                          />
-                        </td>
-                        {months[index + 1] && (
-                          <>
-                            <td className="py-2 px-4 border-b text-center">
-                              {months[index + 1]}
-                            </td>
-                            <td className="py-2 px-4 border-b text-center">
-                              <input
-                                type="checkbox"
-                                checked={!!selectedMonths[months[index + 1]]}
-                                onChange={() => handleCheckboxChange(months[index + 1])}
-                              />
-                            </td>
-                          </>
-                        )}
-                      </tr>
-                    );
-                  }
-                  return null; // Skip odd indices
-                })}
-              </tbody>
-            </table>
-            <div className="flex justify-between mt-4">
-              <button
-                className="bg-red-500 text-white py-2 px-4 rounded"
-                onClick={closeModal}
-              >
-                Tutup
-              </button>
-              <button
-                className="bg-green-500 text-white py-2 px-4 rounded"
-                onClick={() => {
-                  // Add your apply logic here
-                  console.log("Apply clicked");
-                }}
-              >
-                Apply
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
