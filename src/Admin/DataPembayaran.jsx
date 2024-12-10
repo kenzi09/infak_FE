@@ -9,8 +9,9 @@ const Table = () => {
   const [selectedDate, setSelectedDate] = useState(""); // State for selected date
 
   const data = [
-    { nis: "123456", nama: "John Doe", rayon: "Rayon A", rombel: "PPLG XII-1", tanggal: "2024-09-10" },
-    { nis: "789012", nama: "Jane Smith", rayon: "Rayon B", rombel: "PPLG XII-1", tanggal: "2024-09-11" },
+    { nis: "12208904", nama: "Anton Witjaksono", rayon: "Rayon Cisarua 6", rombel: "PPLG XII-1", tanggal: "2024-09-10" },
+    { nis: "12208898", nama: "Bahtiar Abdul Aziz", rayon: "Rayon Cicurug 4", rombel: "PPLG XII-1", tanggal: "2024-09-11" },
+    { nis: "12208121", nama: "Kenzi Badrika", rayon: "Rayon Cibedug 3", rombel: "PPLG XII-1", tanggal: "2024-09-9" },
     // Tambahkan lebih banyak data di sini
   ];
 
