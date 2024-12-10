@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./index.css";
 import wk from "../assets/img/wk.jpg";
 import Navbar from "../assets/Items/navbar";
@@ -80,8 +80,9 @@ function Dashboard() {
             {userData.rayon_id.rayon} | {userData.nama_rombel} | {userData.nis}
           </p>
         </div>
-        <main className="flex-grow flex flex-col items-center justify-center">
-          <div className="justify-around flex w-full h-3/4 pb-7">
+        <main>
+          {/* <div className="justify-around flex w-full h-3/4 pb-7 bg-blue-500"> */}
+          <div className="flex justify-center flex-wrap items-center gap-[200px] pb-7">  
             <div className="flex justify-center items-center">
               <div style={{ width: 450, height: 430, marginTop: "-100px" }}>
                 <div className="flex items-center justify-start pb-5">
@@ -105,12 +106,12 @@ function Dashboard() {
                     ٱنفِصَامَ لَهَاۗ وَٱللَّهُ سَمِيعٌ عَلِيمٌ
                   </p>
                   <p className="text-black text-center italic text-[13px]">
-                    "Tidak ada paksaan untuk (memasuki) agama (Islam);
+                    Tidak ada paksaan untuk (memasuki) agama (Islam);
                     sesungguhnya telah jelas jalan yang benar daripada jalan
                     yang sesat. Karena itu, barang siapa yang ingkar kepada
                     thaghut dan beriman kepada Allah, maka sesungguhnya ia telah
                     berpegang teguh pada tali yang sangat kuat yang tidak akan
-                    putus. Allah Maha Mendengar, Maha Mengetahui."
+                    putus. Allah Maha Mendengar, Maha Mengetahui.
                     (Q.s.Al-Baqarah:256)
                   </p>
                 </div>
