@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import TabelApp from "./Riwayat/TabelApp";
@@ -39,7 +40,7 @@ function Pembayaran() {
         <Navbar />
         <div className="px-28 py-14">
         <h2 className="text-center text-2xl font-bold pt-3">
-          Bukti App Zakat Infaq & Shadaqoh
+           Website Pembayaran Zakat Infaq & Shadaqoh
         </h2>
         <div className="flex flex-col space-y-2 px-12 pt-10">
           <div className="text-left space-y-1">
