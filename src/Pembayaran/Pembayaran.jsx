@@ -30,7 +30,6 @@ function Pembayaran() {
 
   const handleTabClick = (tab) => setActiveTab(tab);
 
-  const handleBackClick = () => navigate("/user/dashboard");
 
   // Kondisi untuk menampilkan konten berdasarkan path
   if (location.pathname === "/user/pembayaran") {
@@ -38,10 +37,10 @@ function Pembayaran() {
       <div className="w-full bg-[#FFFDF1] min-h-screen pt-12">
         <Navbar />
         <div className="px-28 py-14">
-        <h2 className="text-center text-2xl font-bold pt-3">
-          Bukti App Zakat Infaq & Shadaqoh
+        <h2 className="text-center text-2xl font-bold pt-[10px]">
+          Pembayaran Zakat Infaq & Shadaqoh
         </h2>
-        <div className="flex flex-col space-y-2 px-12 pt-10">
+        <div className="flex flex-col space-y-2 px-[50px] pt-9">
           <div className="text-left space-y-1">
             <div className="flex">
               <p className="font-pt-serrif font-semibold w-60">NIS</p>

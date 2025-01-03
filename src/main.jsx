@@ -12,6 +12,7 @@ import View from './PS/View';
 import Home from './PS/Home';
 import SidebarAdmin from './Admin/Sidebar';
 import ProtectedRoute from './ProtectedRoute';
+import Verifikasi from './Users/Verifikasi';
 
 const RedirectIfAuthenticated = ({ children }) => {
   const token = sessionStorage.getItem("token");
@@ -32,8 +33,10 @@ const RedirectIfAuthenticated = ({ children }) => {
 };
 
 createRoot(document.getElementById('root')).render(
+
   <StrictMode>
     <BrowserRouter>
+    
       <Routes>
         {/* Proteksi route / dan /login */}
         <Route
@@ -55,6 +58,7 @@ createRoot(document.getElementById('root')).render(
         
         {/* Route untuk siswa */}
         <Route path="/User/dashboard" element={<ProtectedRoute requiredRole="Siswa"><Dashboard /></ProtectedRoute>} />
+        <Route path="/User/Verifikasi" element={<ProtectedRoute requiredRole="Siswa"><Verifikasi /></ProtectedRoute>} />
         <Route path="/User/riwayat" element={<ProtectedRoute requiredRole="Siswa"><Pembayaran /></ProtectedRoute>} />
         <Route path="/User/pembayaran" element={<ProtectedRoute requiredRole="Siswa"><Pembayaran /></ProtectedRoute>} />
         <Route path="/User/pembayaran2" element={<ProtectedRoute requiredRole="Siswa"><Pembayaran3 /></ProtectedRoute>} />

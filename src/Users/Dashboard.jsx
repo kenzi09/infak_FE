@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 import wk from "../assets/img/wk.jpg";
 import Navbar from "../assets/Items/navbar";
@@ -15,42 +16,61 @@ function Dashboard() {
     return savedData ? JSON.parse(savedData) : null;
   });
 
-  
+  const navigate = useNavigate();
+
+  // Simulasi Loading
   useEffect(() => {
     setTimeout(() => {
       setIsLoaded(true);
     }, 500);
   }, []);
-  
-  
-  
+
   useEffect(() => {
     const token = sessionStorage.getItem("token");
-    console.log("token yang diterima", token);
-    
-    if (!userData && token) {  // Hanya fetch jika userData kosong dan ada token
-      const fetchData = async () => {
+
+    if (!token) {
+      console.log("Token tidak ditemukan, arahkan ke halaman login.");
+      navigate("/login");
+      return;
+    }
+
+    // Jika userData tidak ada, ambil data dari API
+    if (!userData) {
+      const fetchUserData = async () => {
         try {
           const response = await axios.get("http://127.0.0.1:8000/api/siswa", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            headers: { Authorization: `Bearer ${token}` },
           });
           const data = response.data?.data || {};
-          setUserData(data);
-          console.log(data)
-          
-          sessionStorage.setItem("userData", JSON.stringify(data));
+
+          console.log("Data pengguna:", data); // Debug log semua data pengguna
+
+          // Validasi data no_tlp dan nominal
+          if (!data.no_tlp || !data.nominal) {
+            console.warn("Data tidak valid, arahkan ke halaman verifikasi.");
+            navigate("/User/Verifikasi");
+          } else {
+            // Simpan data pengguna jika valid
+            setUserData(data);
+            sessionStorage.setItem("userData", JSON.stringify(data));
+          }
         } catch (error) {
-          console.error("Error fetching data:", error);
+          console.error("Gagal mengambil data pengguna:", error);
+          navigate("/login");
         }
       };
-      
-      fetchData();
-    }
-  }, [userData]);
 
-  if (!userData) {
+      fetchUserData();
+    } else {
+      // Validasi jika userData sudah ada di sessionStorage
+      if (!userData.no_tlp || !userData.nominal) {
+        console.warn("Data tidak valid dari sessionStorage, arahkan ke halaman verifikasi.");
+        navigate("/User/Verifikasi");
+      }
+    }
+  }, [userData, navigate]);
+
+  if (!userData || !isLoaded) {
     return (
       <div className="max-h-screen bg-[#FFFDF1]">
         <div className="p-4 absolute">
@@ -77,7 +97,8 @@ function Dashboard() {
             <span className="font-bold text-gray-800">{userData.name}</span>
           </p>
           <p className="text-[18px] text-gray-500">
-            {userData.rayon_id.rayon} | {userData.nama_rombel} | {userData.nis}
+            {userData.rayon_id?.rayon || "Rayon Tidak Ditemukan"} |{" "}
+            {userData.nama_rombel || "Rombel Tidak Ditemukan"} | {userData.nis || "NIS Tidak Tersedia"}
           </p>
         </div>
         <main className="flex-grow flex flex-col items-center justify-center">

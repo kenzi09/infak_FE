@@ -135,7 +135,7 @@ function Login() {
                   name="email"
                   type="email"
                   required
-                  className="appearance-none w-[261.68px] h-[35.57px] lg:w-[434px] lg:h-[59px] px-4 py-2 border border-gray-300 lg:rounded-[20px] rounded-[12.06px] text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-600 bg-[#A9B782]"
+                  className="appearance-none w-[261.68px] h-[35.57px] lg:w-[434px] lg:h-[59px] px-4 py-2 border border-none lg:rounded-[20px] rounded-[12.06px] text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-600 bg-[#A9B782]"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -151,7 +151,7 @@ function Login() {
                   name="password"
                   type={showPassword ? "text" : "password"}
                   required
-                  className="appearance-none w-[261.68px] h-[35.57px] lg:w-[434px] lg:h-[59px] px-4 py-2 border border-gray-300 lg:rounded-[20px] rounded-[12.06px] text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-600 bg-[#A9B782]"
+                  className="appearance-none w-[261.68px] h-[35.57px] lg:w-[434px] lg:h-[59px] px-4 py-2 border border-none lg:rounded-[20px] rounded-[12.06px] text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-600 bg-[#A9B782]"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -196,7 +196,8 @@ function Login() {
                 </button>
               </div>
             </form>
-          </div></div>
+          </div>
+          </div>
         </div>
         </div>
       </div>
